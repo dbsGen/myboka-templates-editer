@@ -1,0 +1,111 @@
+.simple-text-content .font {
+  position: relative; }
+.simple-text-content ul.btn-group {
+  margin: 0; }
+.simple-text-content .btn {
+  cursor: pointer; }
+.simple-text-content .font-group {
+  position: absolute;
+  left: 3px;
+  top: 25px;
+  display: none;
+  list-style: none;
+  margin: 0;
+  background: white;
+  font-size: 12px;
+  border: 1px solid black; }
+.simple-text-content .font-group > .font-btn {
+  display: block;
+  width: 44px;
+  height: 15px;
+  color: black;
+  text-align: center;
+  padding-bottom: 2px;
+  cursor: pointer;
+  text-shadow: none; }
+  .simple-text-content .font-group > .font-btn:hover {
+    background: cornflowerblue;
+    color: white; }
+  .simple-text-content .font-group > .font-btn.wysihtml5-command-active {
+    background: blue;
+    color: white; }
+    .simple-text-content .font-group > .font-btn.wysihtml5-command-active:hover {
+      background: cornflowerblue; }
+.simple-text-content .color {
+  position: relative; }
+  .simple-text-content .color > .color-group {
+    position: absolute;
+    display: none;
+    width: 80px;
+    padding: 2px;
+    background-color: white;
+    box-shadow: 1px 0 2px #555555;
+    -moz-box-shadow: 1px 0 2px #555555;
+    border-radius: 2px;
+    left: 0;
+    top: 30px;
+    margin: 0;
+    list-style: none; }
+    .simple-text-content .color > .color-group > li {
+      width: 5px;
+      height: 5px;
+      list-style: none;
+      float: left; }
+      .simple-text-content .color > .color-group > li:hover {
+        box-shadow: 0 0 2px black;
+        -moz-box-shadow: 0 0 2px black;
+        position: relative; }
+      .simple-text-content .color > .color-group > li.wysihtml5-command-active {
+        box-shadow: 0 0 2px black;
+        -moz-box-shadow: 0 0 2px black;
+        position: relative; }
+  .simple-text-content .color > div {
+    width: 15px;
+    height: 15px;
+    border: 1px solid black;
+    background: black; }
+.simple-text-content .simple-text-content {
+  position: relative; }
+  .simple-text-content .simple-text-content > div > .btn-group .btn {
+    height: 20px; }
+.simple-text-content .image-add {
+  padding: 2px;
+  background-color: white;
+  box-shadow: 1px 0 2px #555555;
+  -moz-box-shadow: 1px 0 2px #555555;
+  border-radius: 2px;
+  position: absolute;
+  left: 90px;
+  top: 30px;
+  z-index: 11;
+  width: 230px;
+  height: 70px; }
+  .simple-text-content .image-add input[data-wysihtml5-dialog-field='src'] {
+    margin-bottom: 0; }
+  .simple-text-content .image-add .show-image {
+    width: 66px;
+    height: 66px;
+    margin: 2px;
+    position: relative; }
+    .simple-text-content .image-add .show-image > #simple-text-image {
+      max-height: 66px;
+      max-width: 66px;
+      position: relative;
+      z-index: 12; }
+    .simple-text-content .image-add .show-image > .image-background {
+      width: 50px;
+      height: 50px;
+      left: 4px;
+      top: 4px;
+      border: 4px dashed #999999;
+      border-radius: 14px;
+      position: absolute;
+      z-index: 11; }
+  .simple-text-content .image-add #display {
+    margin: 8px 3px; }
+    .simple-text-content .image-add #display .icon-cancel {
+      cursor: pointer; }
+.simple-text-content .switch:before {
+  content: "HTML"; }
+.simple-text-content .switch.wysihtml5-action-active:before {
+  content: "Preview"; }

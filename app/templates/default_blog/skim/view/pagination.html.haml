@@ -1,0 +1,9 @@
+= load_script "#{dynamic_path}/skim/view/helper.rb"
+- page = (params[:page] || 1).to_i
+.pagination
+  .right
+    = a_tag(page - 1 < 1,pagination_url(page: page - 1), '<span class="icon-arrow-left-3"/>')
+    = a_tag(page + 1 > @articles.total_page,pagination_url(page: page + 1), '<span class="icon-arrow-right-3"/>')
+  .left
+    - ([@articles.page - 3, 1].max..[@articles.page + 3, @articles.total_page].min).each do |n|
+      = a_tag(page == n,pagination_url(page: n), n.to_s)

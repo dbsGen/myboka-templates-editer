@@ -1,0 +1,15 @@
+- @template.paths 'skim_path' do |js, css|
+  - js.each do |jf|
+    = bk_javascript_include_tag jf.path
+  - css.each do |cf|
+    = bk_stylesheet_link_tag cf.path
+.container
+  .offset2.span8{style: 'margin-top: 40px; border: 1px solid black; padding: 10px'}
+    - h = {id: 'id_1', element: @element, dynamic_path: @template.dynamic_path,}
+    - h[:comment] = Comment.default_comment if @template.type == 'comment'
+    = render file: @content_path, locals: h
+
+  .offset2.span8
+    = link_to '编辑模式',
+    edit_template_path(name: @template.name, version: @template.version, content: @element.content),
+    class: 'btn'

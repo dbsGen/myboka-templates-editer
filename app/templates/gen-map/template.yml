@@ -1,0 +1,13 @@
+template:
+  name: gen-map
+  version: 0.33
+  type: content
+  screen_name: 地图g
+  summary: 可以绘制一个地图.
+  cost: 131
+  edit_path:
+    - edit/assets/style.css
+    - edit/assets/script.js
+    - path: http://api.map.baidu.com/api?v=1.5&ak=91938da8ba27105c9edd01406add47fb&callback=initialize
+      type: js
+    - http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css

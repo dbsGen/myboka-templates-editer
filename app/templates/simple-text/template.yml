@@ -1,0 +1,36 @@
+# Gen http://zhaorenzhi.cn
+# 这个文件用于描述模板的基础属性
+
+template:
+#  模板名
+  name: 'simple_text'
+#  模板的版本
+  version: 0.5
+#  是否需要@引用，在用户输入@gen的时候会去查找gen这个用户并且变为超链接。
+  is_quote: true
+#  类型 content or blog
+  type: 'content'
+#  显示名称
+  screen_name:
+    en: 'Simple text'
+    zh: '简单文本'
+#  简介
+  summary:
+    en: 'A simple rich text editor'
+    zh: '简单的富文本编辑器'
+#    TODO 发布时换成min
+#
+  edit_path:
+#      type 默认根据后缀名
+    - path: 'edit/include_js/lib/simple.js'
+      type: 'js'
+#        也可以省略
+    - 'edit/include_js/lib/wysihtml5-0.3.0.js'
+    - 'edit/include_js/script.js'
+    - 'edit/include_css/style.css'
+#    - 'include_css/some_css.css'
+  skim_path:
+    - 'assets/style.css'
+    - 'assets/colors.css'
+#   默认是icon/icon.png
+  icon_path: 'icon/icon.png'

@@ -1,0 +1,23 @@
+-#为了区分同一个页面不同的组件需要获取外部传入的一个id
+-# params id 一个唯一标识
+-# params default 默认内容
+-# params dynamic_path 动态文件的路径
+-# params static_path 静态文件的路径
+-# params template_info template.yml 中的Hash内容
+.t_video{id: id}
+  - begin
+    - content = JSON(default)['source']
+  - rescue StandardError => _
+    - content = default
+  %input.span3{placeholder: '视频地址', type:'text', src: api_path('checker', type: 'edit'), for: id, value: content}
+  - if !content.nil? and content.size > 0
+    = javascript_tag do
+      check_url($("##{id}").children('input')[0])
+  .clearfix.v_content#message
+    请输入视频地址
+  .clearfix.v_content#display{style: 'display: none'}
+    .pull-left.v_image
+      %img
+    .pull-left
+      .v_title
+      .v_desc

@@ -1,0 +1,15 @@
+= stylesheet_link_tag 'article/icon'
+#blog
+  .post.bloger
+    - cache [@template, @article] do
+      %h2
+        %a{href: ''}= @article.title
+      %p= @article.edited_at.nil? ? @article.created_at.strftime('%F') : @article.edited_at.strftime('%F')
+      .entry
+        = render_article_content
+  -#显示评论
+  #comment
+    .title= "\"#{@article.title}\",有#{(@comments || []).size}条评论"
+    = render_comments
+    .title 添加评论
+    = render_add_comment

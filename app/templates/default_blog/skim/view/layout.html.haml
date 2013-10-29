@@ -1,0 +1,26 @@
+= stylesheet_link_tag 'article/icon'
+%style
+  = raw ".myboka > .content #content-field .article-item .top .mark{ background: url('#{assets_path('skim/assets/type.png')}') no-repeat center #1abc9c}"
+
+.top-border
+.myboka
+  .header
+    %h1.title= public_settings.title
+    .header-right
+      .navbar
+        %a.navitem{href: root_path}
+          %span 主页
+        - unless public_settings.pages.nil?
+          - public_settings.pages.each do |page|
+            %a.navitem{href: collection_path(page.id)}
+              %span= page.title
+      .search
+        %input#main-search{placeholder: raw('&#xe041;搜索...'), search: 'true'}
+        .result{style: 'display: none'}
+          .mark
+  .content
+    = render_content
+  #footer.footer
+    .information
+      Powered by
+      %a{href: 'http://www.myboka.com'} MyBoka

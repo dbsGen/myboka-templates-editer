@@ -1,0 +1,66 @@
+-#为了区分同一个页面不同的组件需要获取外部传入的一个id
+-# params id 一个唯一标识
+-# params default 默认内容
+-# params dynamic_path 动态文件的路径
+-# params template_info template.yml 中的Hash内容
+.simple-text-content
+  %div{:id => "toolbar_#{id}"}
+    %ul.btn-group
+      %li.btn{'data-wysihtml5-command'=>"bold", :title => "粗体 CTRL+B"}
+        %i.icon-bold
+      %li.btn{'data-wysihtml5-command'=>"italic", :title => "斜体 CTRL+I"}
+        %i.icon-italic
+      %li.btn{'data-wysihtml5-command'=>"insertImage", :title => '插入图片'}
+        %i.icon-picture
+      %li.btn{'data-wysihtml5-command' => 'createLink', title: '添加链接'}
+        %i.icon-hand-up
+      %li.btn.font{title: '自体大小'}
+        %div 普通
+        %ul.font-group
+          %li.font-btn{'data-wysihtml5-command-value'=>"x-large", 'data-wysihtml5-command'=>"fontSize"}
+            超大
+          %li.font-btn{'data-wysihtml5-command-value'=>"large", 'data-wysihtml5-command'=>"fontSize"}
+            大号
+          %li.font-btn{'data-wysihtml5-command-value'=>"medium", 'data-wysihtml5-command'=>"fontSize"}
+            普通
+          %li.font-btn{'data-wysihtml5-command-value'=>"small", 'data-wysihtml5-command'=>"fontSize"}
+            小号
+          %li.font-btn{'data-wysihtml5-command-value'=>"x-small", 'data-wysihtml5-command'=>"fontSize"}
+            超小
+      %li.btn.color{title: '颜色选择'}
+        %div
+        %ul.color-group
+          - require "#{dynamic_path}/edit/view/color_list"
+          - ColorList.colors.each do |color|
+            %li{'data-wysihtml5-command-value' => color, 'data-wysihtml5-command' => 'foreColor', style: "background-color:##{color}"}
+      %li.btn.switch{'data-wysihtml5-action' => 'change_view'}
+    %div{'data-wysihtml5-dialog' => 'createLink', :style => 'display:none'}
+      %label
+        %input{value: 'http://', 'data-wysihtml5-dialog-field' => 'href', type: 'text'}
+        .btn-group{style: 'display: inline'}
+          %a.btn.btn-primary{'data-wysihtml5-dialog-action' => 'save', title: 'OK'}
+            %i.icon-ok
+          %a.btn{'data-wysihtml5-dialog-action' => 'cancel', title: '取消'}
+            %i.icon-remove
+    .clearfix.image-add{'data-wysihtml5-dialog' => 'insertImage', :style => 'display:none'}
+      .clearfix
+        .pull-left
+          %label
+            %input{'data-wysihtml5-dialog-field' => 'src', placeholder: '链接', style: 'width: 140px', type: 'text'}
+            #display{style: 'width: 140px;display: none'}
+              本地图片
+              %i.icon-remove
+          .btn-group
+            %button.btn.btn-primary{'data-wysihtml5-dialog-action' => 'save', title: '确定', disabled: true}
+              %i.icon-ok
+            %button.btn{'data-wysihtml5-dialog-action' => 'cancel', title: '取消'}
+              %i.icon-remove
+            %button.btn.btn-primary{title: '本地上传', upload: true}
+              %i.icon-upload
+        .pull-left.show-image
+          .image-background
+          %img#simple-text-image{loading: assets_path('assets/loading.gif')}
+  = text_area_tag id, default, :class => 'span8', style: 'height: 150px'
+  = javascript_defer_tag "'undefined' == typeof wysihtml5" , "#{dynamic_path}edit/view/script.js.erb",
+  id: id, template: template_info, dynamic_path: dynamic_path
+

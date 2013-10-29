@@ -1,0 +1,22 @@
+- cache [@template, @article] do
+  %style= ".content{margin-top: 2px}\n.myboka .content #left{padding: 0 15px 0 0 !important}"
+  .article
+    .a-header
+      .title= @article.title
+      .subtitle
+        -#TODO 这里的链接需要补全
+        .item
+          %span.icon-user-2
+          = name_tag(@article.creater, class: 'reversion')
+        .item.time
+          %span.icon-clock
+          = time_progress(@article.created_at)
+        - unless @article.edited_at != @article.creater
+          .item.time
+            %span.icon-edit
+            = time_progress(@article.edited_at)
+    .body
+      = render_article_content
+-#显示评论
+= render_comments
+= render_add_comment

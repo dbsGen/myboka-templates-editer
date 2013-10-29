@@ -1,0 +1,5 @@
+-#这个模板与content差不多，不过这个是以div作为容器
+-#并且这个是自动分页
+%div{options}
+  - objects.each do |object|
+    = render_object(partial, false, object)

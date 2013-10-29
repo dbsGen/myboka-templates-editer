@@ -1,0 +1,115 @@
+.simple-text-content
+  .font
+    position: relative
+  ul.btn-group
+    margin: 0
+  .btn
+    cursor: pointer
+  .font-group
+    position: absolute
+    left: 3px
+    top: 25px
+    display: none
+    list-style: none
+    margin: 0
+    background: #ffffff
+    font-size: 12px
+    border: 1px solid black
+  .font-group
+    >.font-btn
+      display: block
+      width: 44px
+      height: 15px
+      color: black
+      text-align: center
+      padding-bottom: 2px
+      cursor: pointer
+      text-shadow: none
+      &:hover
+        background: cornflowerblue
+        color: #ffffff
+      &.wysihtml5-command-active
+        background: #0000ff
+        color: #ffffff
+        &:hover
+          background: cornflowerblue
+  .color
+    position: relative
+    >.color-group
+      position: absolute
+      display: none
+      width: 80px
+      padding: 2px
+      background-color: #ffffff
+      box-shadow: 1px 0 2px #555
+      -moz-box-shadow: 1px 0 2px #555
+      border-radius: 2px
+      left: 0
+      top: 30px
+      margin: 0
+      list-style: none
+      >li
+        width: 5px
+        height: 5px
+        list-style: none
+        float: left
+        &:hover
+          box-shadow: 0 0 2px black
+          -moz-box-shadow: 0 0 2px black
+          position: relative
+        &.wysihtml5-command-active
+          box-shadow: 0 0 2px black
+          -moz-box-shadow: 0 0 2px black
+          position: relative
+    > div
+      width: 15px
+      height: 15px
+      border: 1px solid #000000
+      background: black
+  .simple-text-content
+    position: relative
+    >div > .btn-group .btn
+      height: 20px
+
+  .image-add
+    padding: 2px
+    background-color: #ffffff
+    box-shadow: 1px 0 2px #555
+    -moz-box-shadow: 1px 0 2px #555
+    border-radius: 2px
+    position: absolute
+    left: 90px
+    top: 30px
+    z-index: 11
+    width: 230px
+    height: 70px
+    input[data-wysihtml5-dialog-field='src']
+      margin-bottom: 0
+    .show-image
+      width: 66px
+      height: 66px
+      margin: 2px
+      position: relative
+      > #simple-text-image
+        max-height: 66px
+        max-width: 66px
+        position: relative
+        z-index: 12
+      > .image-background
+        width: 50px
+        height: 50px
+        left: 4px
+        top: 4px
+        border: 4px dashed #999
+        border-radius: 14px
+        position: absolute
+        z-index: 11
+    #display
+      margin: 8px 3px
+      .icon-cancel
+        cursor: pointer
+  .switch
+    &:before
+      content: 'HTML'
+    &.wysihtml5-action-active:before
+      content: 'Preview'

@@ -1,0 +1,16 @@
+# Gen http://zhaorenzhi.cn
+# 这个文件用于描述模板的基础属性
+
+template:
+#  模板名
+  name: 't_video'
+#  模板的版本
+  version: 0.73
+#  类型 content or blog
+  type: content
+  is_quote: false
+  screen_name: 视频
+  summary: 在博客中插入视频
+  edit_path:
+    - edit/assets/style.css
+    - edit/assets/script.js

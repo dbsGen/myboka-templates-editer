@@ -1,0 +1,33 @@
+(function(){
+    this.check_content = function() {
+        var $this = $(this.textareaElement);
+        var value = this.getValue();
+        //检查开头是否有功能命令
+        var word = value.replace(/<[^>].*?>/g, '').replace('&nbsp;', ' ').match(/^\/\w+ /);
+        var comment = $this.parents('.c_content');
+        while(word) {
+            word = word[0];
+            var key = false;
+            <%- shortcuts.each do |k, v| %>
+            if(word == '/<%= j k %> ') {
+                set_avatar(comment, '<%= j avatar_url(current_user, v) %>', '<%= j v %>');
+                var t = value.match(/^(<[^>].*?>)*\/((<[^>].*?>)*\w)+( |(&nbsp;))/)[0];
+                this.setValue(value = value.replace(/^(<[^>].*?>)*\/((<[^>].*?>)*\w)+( |(&nbsp;))/, t.replace(/\/((<[^>].*?>)*\w)+( |(&nbsp;))$/, '')));
+                key = true
+            }
+            <%- end %>
+            word = key ? value.match(/^\/\w+ /) : null;
+        }
+        //先检查是否过界
+        var limit = <%= limit || 500 %>;
+        var length = value.replace(/<[^>].*?>/g, '').length;
+        var tip = $this.parent().children('.tips');
+        tip.text(length + '/<%= limit %>');
+        if(length > limit) {
+            tip.addClass('overflow')
+        } else {
+            tip.removeClass('overflow')
+        }
+        comment.val(JSON.stringify({exp: comment.find('.c_avatar.big_avatar').attr('data-exp'), content: value}));
+    }
+})();

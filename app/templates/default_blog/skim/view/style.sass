@@ -1,0 +1,865 @@
+$page-width: 980px
+$main-color: #1abc9c
+$black-color: #555
+$shadow-color: #b3b3b3
+$gray-color: #a0a3a7
+$hover-color: #3498db
+$white-gray-color: #f1f1f1
+
+body
+  background-color: #1abc9c
+  margin: 0
+  padding: 0
+  font-size: 12px
+  font-family: '汉仪中黑简','微软雅黑','黑体',sans-serif
+.top-border
+  top: 5px
+  background-color: white
+  position: absolute
+  width: 100%
+  height: 67px
+  z-index: 0
+
+@font-face
+  font-family: 'Sniglet'
+  font-style: normal
+  font-weight: 400
+  src: local('Sniglet Regular'), local('Sniglet-Regular'), url(http://themes.googleusercontent.com/static/fonts/sniglet/v4/zaGgxcO7SfusqT6GpDlcHg.woff) format('woff')
+@font-face
+  font-family: 'Aladin'
+  font-style: normal
+  font-weight: 400
+  src: local('Aladin Regular'), local('Aladin-Regular'), url(http://themes.googleusercontent.com/static/fonts/aladin/v2/buRUtoRWOWPeMPMKs6Y-uw.woff) format('woff')
+@font-face
+  font-family: 'Limelight'
+  font-style: normal
+  font-weight: 400
+  src: local('Limelight'), url(http://themes.googleusercontent.com/static/fonts/limelight/v4/kD_2YDkzv1rorNqQ2oFK5j8E0i7KZn-EPnyo3HZu7kw.woff) format('woff')
+@font-face
+  font-family: 'Numans'
+  font-style: normal
+  font-weight: 400
+  src: local('Numans'), local('Numans-Regular'), url(http://themes.googleusercontent.com/static/fonts/numans/v3/H6jkjoZl4TIrPYyjhdoCcw.woff) format('woff')
+
+@mixin transition
+  -moz-transition: all 400ms
+  -o-transition: all 400ms
+  -webkit-transition: all 400ms
+  transition: all 400ms
+
+@mixin alpha($value)
+  filter: alpha(opacity=$value * 100)
+  opacity: $value
+  -moz-opacity: $value
+@mixin style1($color)
+  background-color: $color
+  border-bottom: 1px solid darken($color, 15%)
+  border-top: 1px solid lighten($color, 15%)
+  border-left: 1px solid darken($color, 5%)
+  border-right: 1px solid darken($color, 5%)
+  &:hover
+    background-color: lighten($color, 3%)
+  &:active
+    border-bottom: 1px solid lighten($color, 15%)
+    border-top: 1px solid darken($color, 15%)
+
+@mixin button-hover($color)
+  &:hover
+    border: none
+    background-color: $color
+    box-shadow: 0 0 2px $color
+    -moz-box-shadow: 0 0 2px $color
+  &:active
+    border: none
+    box-shadow: none
+    -moz-box-shadow: none
+
+@mixin bottom-border
+  border-bottom: 1px solid $shadow-color
+  box-shadow: 0 1px 0 white
+  -moz-box-shadow: 0 1px 0 white
+
+@mixin row
+  clear: both
+@mixin overhide
+  text-overflow: ellipsis
+  overflow: hidden
+
+@mixin pull-left
+  float: left
+@mixin pull-right
+  float: right
+@mixin nav-style
+  @include pull-left
+  position: relative
+  display: block
+  padding: 7px 17px
+  margin: 0 0.5px
+  //font-weight: bolder
+  font-size: 13px
+  text-shadow: 0 1px 0 white
+  border-radius: 2px
+  color: $gray-color
+  &:hover, &.active
+    @include alpha(1)
+    color: white
+    background-color: $main-color
+    text-shadow: none
+
+.myboka
+  width: $page-width
+  margin: 0 auto
+  color: $black-color
+  position: relative
+  z-index: 1
+  margin-top: 5px
+  background-color: $main-color
+  word-break: break-all
+  .hidden
+    display: none
+  input, textarea
+    font-family: iconFont, sans-serif
+    border: 1px solid #b3b3b3
+    font-size: 12px
+    border-radius: 2px
+    padding: 5px 8px
+    @include transition
+    &:hover
+      border: 1px solid $main-color
+      box-shadow: 0 0 2px $main-color
+      -moz-box-shadow: 0 0 2px $main-color
+
+  .helper
+    font-family: iconFont
+    border: none
+    background-color: transparent
+    font-size: 12px
+
+  a
+    color: $main-color
+    text-decoration: none
+  a.reversion
+    color: $gray-color
+    &:hover
+      color: white
+      background-color: #5d6d7e
+      border-radius: 1px
+  a.gray
+    color: $black-color
+    @include transition
+    &:hover
+      color: $gray-color
+  .row
+    @include row
+    &:after
+      content: "."
+      display: block
+      height: 0
+      clear: both
+      visibility: hidden
+  .header
+    @include row
+    background-color: white
+    height: 67px
+    .title
+      padding: 0
+      margin: 0
+      color: $gray-color
+      display: inline
+      font-size: 40px
+
+    .header-right
+      @include pull-right
+      margin-top: 16px
+      .navbar
+        display: inline
+        margin-right: 5px
+        .navitem,.navitem-last
+          @include nav-style
+
+      .search
+        @include  pull-right
+        position: relative
+        margin: 4px 10px
+        >input
+          width: 161px
+          &:hover
+            border: 1px solid $main-color
+            box-shadow: 0 0 3px $main-color
+            -moz-box-shadow: 0 0 3px $main-color
+          &:active
+            border: 1px solid $gray-color
+        .result
+          position: absolute
+          opacity: 0.96
+          z-index: 20
+          top: 36px
+          background-color: white
+          width: 180px
+          box-shadow: 2px 2px 0 $gray-color
+          -moz-box-shadow: 2px 2px 0 $gray-color
+          overflow: hidden
+          border-top: 1px solid #eeeeee
+          border-left: 1px solid #eeeeee
+          .search-result
+            padding: 10px 6px
+          .mark
+            width: 0
+            height: 0
+            border-width: 5px
+            border-style: solid
+            border-color: $main-color white white $main-color
+            float: left
+          .r-noone
+            padding: 10px
+            text-align: center
+            font-size: 12px
+            color: $gray-color
+          .r-header
+            background-color: white
+            color: $black-color
+            font-size: 10px
+            padding: 1px 2px
+            border-bottom: 1px solid $white-gray-color
+            border-left: 2px solid $main-color
+            font-weight: bold
+          .r-bottom
+            color: $black-color
+            font-size: 11px
+            font-weight: bold
+            padding: 2px 5px
+            display: block
+            &:hover
+              background-color: $white-gray-color
+          .r-article
+            padding: 2px 5px
+            max-height: 57px
+            min-height: 34px
+            color: $gray-color
+            font-size: 10px
+            display: block
+            @include overhide
+            .r-title
+              color: $black-color
+              font-size: 11px
+              @include overhide
+              white-space: nowrap
+              max-width: 160px
+              font-weight: bold
+
+
+  >.content
+    background-color: white
+    border-bottom-left-radius: 3px
+    border-bottom-right-radius: 3px
+    @include row
+    display: inline-block
+    width: 100%
+    padding: 30px 10px 20px 25px
+    .top-information
+      width: 964px
+      height: 136px
+      border-radius: 2px
+      overflow: hidden
+      color: white
+      position: relative
+      .block
+        width: 100%
+        height: 100%
+        position: absolute
+        .welcome
+          width: 100%
+          height: 100%
+          background-color: $main-color
+          position: relative
+          padding: 20px 17px
+          h2
+            margin: 0 0 0 70px
+            font-weight: normal
+            font-size: 28px
+          .bottom
+            right: 25px
+            bottom: 26px
+            position: absolute
+            font-size: 52px
+          .quotation
+            font-family: "Aladin"
+            font-size: 160px
+            float: left
+            display: block
+            margin-top: -26px
+            &:before
+              content: "“"
+      &.white
+        width: 100%
+        border-radius: 0
+        border-color: $main-color
+        border-style: solid
+        border-width: 2px 1px 2px 1px
+        color: $main-color
+        height: 112px
+        .welcome
+          background-color: white
+          padding: 10px
+          h2
+            margin: 0 0 0 55px
+          .bottom
+            font-family: 'Limelight'
+            font-size: 62px
+            right: 36px
+            bottom: -4px
+          .quotation
+            font-size: 80px
+            margin-top: -17px
+            margin-left: -5px
+          .quotation:before
+            font-family: 'Numans'
+            content: '"'
+            font-style: italic
+    #content-field
+      width: 960px
+      margin-top: -25px
+      .article-item
+        color: $gray-color
+        margin-top: 58px
+        @include transition
+        .top
+          height: 60px
+          .mark
+            float: left
+            height: 50px
+            width: 50px
+            border-radius: 2px
+            background-color: $main-color
+          .title
+            height: 53px
+            width: 540px
+            float: left
+            font-size: 18px
+            margin-left: 17px
+            >a
+              color: $black-color
+              &:hover
+                text-decoration: underline
+            .subtitle
+              .item
+                float: left
+        .content
+          margin-top: 3px
+          padding: 0
+          text-indent: 20px
+          overflow: hidden
+          text-overflow: ellipsis
+        .more
+          background-color: $main-color
+          width: 99px
+          color: white
+          text-align: center
+          padding: 8px 6px
+          font-size: 14px
+          margin-top: 19px
+          display: block
+          border-radius: 2px
+          font-weight: bold
+          @include transition
+          &:hover
+            background-color: $hover-color
+        img
+          display: none
+          border: 1px solid $gray-color
+          margin: 6px 0 0 20px
+          max-height: 80px
+          max-width: 80px
+          padding: 2px
+          &[src]
+            display: inline
+        &:hover
+          .top
+            .mark
+              background-color: $hover-color
+      .pagination
+        margin: 58px 0 0 0
+        padding-bottom: 45px
+        a
+          border: none
+          display: block
+          width: 38px
+          padding: 9px 0
+          text-align: center
+          font-weight: bold
+          border-radius: 2px
+          margin-right: 3px
+          float: left
+          &[disabled]
+            opacity: 0.6
+        .left
+          a
+            background-color: $white-gray-color
+            color: $black-color
+            &.disabled
+              background-color: $main-color
+              color: white
+              &:hover
+                color: white
+            &:hover
+              color: $gray-color
+        .right
+          float: right
+          a
+            font-family: iconFont
+            background-color: $main-color
+            color: white
+            &:hover
+              background-color: $hover-color
+            &.disabled:hover
+              background-color: $main-color
+
+  @mixin span
+    display: block
+  .span1
+    @include pull-left
+    @include span
+    width: 10%
+  .span2
+    @include pull-left
+    @include span
+    width: 20%
+  .span3
+    @include pull-left
+    @include span
+    width: 30%
+  .span4
+    @include pull-left
+    @include span
+    width: 40%
+  .span5
+    @include pull-left
+    @include span
+    width: 50%
+  .span6
+    @include pull-left
+    @include span
+    width: 60%
+  .span7
+    @include pull-left
+    @include span
+    width: 70%
+  .span8
+    @include pull-left
+    @include span
+    width: 80%
+  .span9
+    @include pull-left
+    display: table-column
+    width: 90%
+  .span10
+    @include pull-left
+    @include span
+    width: 100%
+  .offset1
+    margin-left: 10%
+  .offset2
+    margin-left: 20%
+  .offset3
+    margin-left: 30%
+  .offset4
+    margin-left: 40%
+  .offset5
+    margin-left: 50%
+  .offset6
+    margin-left: 60%
+  .offset7
+    margin-left: 70%
+  .offset8
+    margin-left: 80%
+  .offset9
+    margin-left: 90%
+  .padding10
+    padding: 10px
+
+  $radius-size: 2px
+  .button
+    border-radius: $radius-size
+    -moz-border-radius: $radius-size
+    -webkit-border-radius: $radius-size
+    background-color: $main-color
+    color: white
+    padding: 1px 3px
+    border: none
+    font-size: 14px
+    display: inline-block
+    @include transition
+    @include button-hover($hover-color)
+    &[disabled]
+      background-color: $gray-color
+      &:hover
+        box-shadow: none
+        -moz-box-shadow: none
+    &:active
+      box-shadow: none
+      -moz-box-shadow: none
+  .icon-button
+    padding: 2px
+  .sign-up
+    height: 110px
+    margin: 51px 111px 0 68px
+    .register-button
+      width: 110px
+      display: block
+      font-size: 17px
+      text-align: center
+      padding: 3px 0
+      margin-top: 18px
+      font-weight: 500
+      @include button-hover(red)
+    .login-button
+      width: 110px
+      display: block
+      font-size: 17px
+      text-align: center
+      padding: 3px 0
+      font-weight: 500
+      @include button-hover(green)
+
+
+  .footer
+    text-align: center
+    font-size: 12px
+    padding: 20px 10px 3px 10px
+    a
+      color: white
+    .information
+      margin-bottom: 3px
+      color: white
+  .main-tail
+    font-size: 12px
+    font-weight: bold
+    width: 200px
+    text-align: center
+    padding: 5px 20px
+    margin: 2px auto
+    background-color: white
+    border-radius: 5px
+    box-shadow: 1px 1px 2px $gray-color
+    -moz-box-shadow: 1px 1px 2px $gray-color
+
+  .extend
+    position: relative
+    .extend-list
+      display: none
+      position: absolute
+      list-style: none
+      z-index: 13
+      a
+        display: block
+  .user-info
+    padding: 20px 0 30px 0
+    .avatar
+      float: left
+      background-color: $main-color
+      margin-right: 17px
+      padding: 1px
+      width: 54px
+      height: 54px
+      img
+        width: 52px
+        height: 52px
+        border: 1px solid $black-color
+    .extend
+      font-size: 12px
+      display: inline
+      .extend-button
+        cursor: pointer
+        border-radius: 2px
+        font-size: 10px
+        padding: 1px
+        color: white
+        text-shadow: 1px 1px 1px $black-color
+        @include style1($main-color)
+      ul.extend-list
+        background-color: white
+        border: 1px solid $gray-color
+        left: 0
+        top: 10px
+        padding: 0
+        width: 70px
+        li
+          a
+            width: 100%
+          margin: 3px
+          &:hover
+            background-color: $main-color
+            a
+              color: white
+    .username
+      font-size: 14px
+      font-weight: bold
+      font-style: italic
+    .description
+      font-size: 12px
+      min-height: 32px
+      max-height: 46px
+      text-overflow: ellipsis
+      display: block
+    .buttons
+      margin-top: 18px
+    .public-button
+      margin: 9px auto
+      width: 123px
+      display: block
+      font-size: 16px
+      text-align: center
+      position: relative
+      padding: 3px 0
+      .badge
+        font-size: 12px
+        border-radius: 20px
+        padding: 1px 5px
+        background-color: red
+        border: 2px solid #ffffff
+        position: absolute
+        right: -6px
+        top: -6px
+        display: block
+        box-shadow: 0 0 2px $gray-color
+        -moz-box-shadow: 0 0 2px $gray-color
+  .control-row
+    @include row
+    font-size: 12px
+    margin: 5px 0 5px 50px
+    height: 30px
+    vertical-align: middle
+    .control-label
+      float: left
+      width: 40px
+      color: $black-color
+      height: 100%
+      padding: 5px
+    .control
+      float: left
+      .help-block
+        display: block
+        color: red
+      input
+        max-width: 200px
+      .password
+        width: 150px
+    .login-button
+      padding: 1px 12px
+    .checkbox
+      padding: 5px
+      .icheckbox_flat-blue
+        position: absolute
+      label
+        color: $gray-color
+        margin-left: 26px
+        margin-top: 6px
+    .submit-row
+      margin: 14px 0 0 49px
+      width: 211px
+  //tags
+  .tags
+    margin-left: -21px
+    height: 46px
+    text-shadow: none
+    @include row
+    >.label
+      background-color: $main-color
+      padding: 3px 1px
+      font-weight: bold
+      display: inline
+      font-size: 13px
+      border-radius: 2px
+      border-bottom: 1px solid darken($main-color, 5%)
+      margin-right: 7px
+    >.tag
+      display: inline-block
+      position: relative
+      margin-left: 2px
+      >a
+        @include style1($white-gray-color)
+        font-size: 10px
+        padding: 3px 9px
+        color: $black-color
+        border-radius: 2px
+        font-weight: 500
+      >.remove
+        right: -5px
+        top: -7px
+        width: 15px
+        height: 15px
+        color: white
+        font-size: 10px
+        border: none
+        position: absolute
+        background-color: transparent
+        padding: 0
+        cursor: pointer
+        z-index: 10
+    >.new-tag
+      display: inline-block
+      position: relative
+      .new-tag-content
+        display: none
+        position: absolute
+        left: 0
+        top: -3px
+        width: 300px
+      >button
+        margin-left: 2px
+      button
+        @include style1($main-color)
+        font-size: 10px
+        padding: 2px 0
+        color: white
+  h4
+    margin: 0
+    border-left: 4px solid $main-color
+    border-bottom: 1px solid $white-gray-color
+    padding: 2px 8px
+    font-weight: 500
+    font-size: 14px
+    width: 235px
+    color: $black-color
+  .more
+    text-align: right
+    font-size: 12px
+    padding-right: 50px
+    >a
+      display: block
+      padding-right: 3px
+      &:hover
+        background-color: #f1f1f1
+        border-radius: 2px
+  .v_info
+    font-size: 12px
+    color: #aaa
+    margin-right: 8px
+  .pull-right
+    float: right
+
+  .subtitle
+    margin-top: 9px
+    font-size: 12px
+    width: 100%
+    .item
+      width: 94px
+      overflow: hidden
+      text-overflow: ellipsis
+      display: block
+      &.time
+        width: 112px
+  .article
+    img
+      max-width: 600px
+    .a-header
+      @include bottom-border
+      padding: 34px 10px 10px 16px
+      text-align: center
+      .title
+        font-size: 20px
+        font-weight: bolder
+      .subtitle
+        font-size: 11px
+        font-weight: normal
+        color: $gray-color
+        .item
+          display: inline-block
+    .body
+      margin: 10px 26px 0 26px
+      padding-right: 2px
+      padding-bottom: 20px
+      text-shadow: 1px 1px 0 white
+      @include bottom-border
+  .article-comments
+    margin: 5px 0 4px 26px
+    @include bottom-border
+    .box
+      margin: 5px
+      border: 1px dashed $gray-color
+      padding: 4px
+      background-color: white
+      .content
+        padding: 2px 5px
+        font-size: 13px
+        &:after
+          content: "."
+          height: 0
+          visibility: hidden
+          display: block
+          clear: both
+        img
+          max-width: 64px
+          max-height: 64px
+      .author
+        font-size: 12px
+        color: $gray-color
+        font-style: italic
+      .r-box
+        border: 1px dashed $gray-color
+        background-color: #faf2cc
+      .replied
+        border: 1px dashed $gray-color
+        color: $gray-color
+        background-color: #eeeeee
+        font-size: 12px
+        padding: 2px 4px
+        cursor: pointer
+  .article-no-comment
+    width: 200px
+    padding: 10px
+    margin: 10px auto
+    background-color: lighten($main-color, 10%)
+    border-radius: 2px
+    text-align: center
+    color: white
+    font-weight: bold
+    display: block
+  .article-comment
+    min-height: 138px
+    margin-left: 26px
+
+  #article-replay
+    margin-left: 10px
+    font-size: 11px
+    color: #aaa
+  .article-nologin
+    margin-left: 26px
+    height: 60px
+    color: $gray-color
+    font-size: 12px
+    >#loading
+      width: 36px
+      height: 36px
+      background: url("/images/loading.gif") no-repeat center
+
+    ul.pagination
+      list-style: none
+      clear: both
+      margin: 0 10px 5px 10px
+      padding: 0
+      &:after
+        content: "."
+        display: block
+        height: 0
+        clear: both
+        visibility: hidden
+      li
+        margin: 1px
+        float: left
+  .btn-group
+    margin-top: 0
+    clear: both
+    position: relative
+    &:after
+      content: "."
+      display: block
+      height: 0
+      clear: both
+      visibility: hidden
+    .btn
+      margin-top: 2px
+      margin-right: 5px
+      padding: 0
+      width: 40px
+      float: left

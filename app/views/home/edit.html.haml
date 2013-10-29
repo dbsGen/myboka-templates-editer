@@ -1,0 +1,13 @@
+- @template.paths do |js, css|
+  - js.each do |jf|
+    = bk_javascript_include_tag jf.path
+  - css.each do |cf|
+    = bk_stylesheet_link_tag cf.path
+.container
+  .span8.offset2{style: 'padding: 10px;margin-top: 50px;border: 1px solid black'}
+    = render file: @content_path, locals: {id: 'id_1', default: params[:content],
+    dynamic_path: @template.dynamic_path, template_info: Hashie::Mash.new(@template.description)}
+  .span8.offset2
+    = form_tag skim_template_path(name: @template.name, version: @template.version), target: '_blank', onsubmit: 'skim_click()' do
+      %input#content{name: 'content', style: 'display: none'}
+      %button.btn#bk_send_button 查看效果

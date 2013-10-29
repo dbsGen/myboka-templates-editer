@@ -1,0 +1,11 @@
+<%-#dynamic_path 动态文件路径 %>
+<%- delay = 0 %>
+<%- @articles.each do |article| %>
+(function(){
+    var e = $('<%= j render(file: "#{dynamic_path}/skim/view/article_item", :locals => {:header => false, :object => article}) %>');
+    e.css('display', 'none');
+    e.appendTo('#articles');
+    e.delay(<%= delay %>).fadeIn();
+    <%- delay = delay + 100 %>
+})();
+<%- end %>

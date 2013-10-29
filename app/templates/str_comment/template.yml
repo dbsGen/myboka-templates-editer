@@ -1,0 +1,21 @@
+template:
+  #  模板名
+  name: sign_text
+  #  模板的版本
+  version: 0.26
+  screen_name: 可注释文本
+  summary: 任何人都能为文本的某些段落写注释.
+  #  是否需要@引用，在用户输入@gen的时候会去查找gen这个用户并且变为超链接。
+  is_quote: false
+  #  是否可以匿名发送模块评论
+  anonymous: true
+  #  类型 content or blog or comment
+  type: content
+  cost: 200
+  skim_path:
+    - skim/assets/script.js
+    - skim/assets/jquery.select-click.js
+    - skim/assets/style.css
+    - skim/assets/rangy.js
+#    - skim/assets/uncompressed/rangy-core.js
+#    - skim/assets/uncompressed/rangy-cssclassapplier.js

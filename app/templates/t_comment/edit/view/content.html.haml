@@ -1,0 +1,33 @@
+-#为了区分同一个页面不同的组件需要获取外部传入的一个id
+-# params id 一个唯一标识
+-# params default 默认内容
+-# params dynamic_path 动态文件的路径
+-# params template_info template.yml 中的Hash内容
+-# assets_path(template, path) 获得静态文件的开放路径
+-# avatar_url(user, expression) 获得用户的头像
+-#
+- limit = template_info['limit']
+.c_content{id: id}
+  .c_avatar.big_avatar{onclick: 'show_avatars(this)'}
+    %img.big_avatar{src: avatar_url(current_user)}
+    .c_triangle
+  .c_groups{style: 'display: none'}
+    = render file: "#{dynamic_path}/edit/view/_small_avatar", layout: nil, locals:{exp:'normal'}
+    = render file: "#{dynamic_path}/edit/view/_small_avatar", layout: nil, locals:{exp:'smile'}
+    = render file: "#{dynamic_path}/edit/view/_small_avatar", layout: nil, locals:{exp:'frolic'}
+    = render file: "#{dynamic_path}/edit/view/_small_avatar", layout: nil, locals:{exp:'angry'}
+    = render file: "#{dynamic_path}/edit/view/_small_avatar", layout: nil, locals:{exp:'depressed'}
+  .c_input
+    %textarea{id: "#{id}_input"}
+    .tips= "#{default.nil? ? 0 : default.size}/#{limit}"
+    = render file: "#{dynamic_path}/edit/view/_toolbar", layout: nil,
+    locals: {id:"toolbar_#{id}_input", color_id: "select_color_#{id}", dynamic_path: dynamic_path}
+  %button.c_send.button{onclick: 'send_click(this)'}
+    发送
+  %script
+    = render file: "#{dynamic_path}/edit/view/script.js", layout: nil,
+    locals:{limit: limit, shortcuts: template_info['shortcuts']}
+  = javascript_defer_tag "'undefined' == typeof wysihtml5" ,
+  "#{dynamic_path}edit/view/script2.js", id: "#{id}_input",
+  dynamic_path: dynamic_path, template: template_info, e_id: id
+

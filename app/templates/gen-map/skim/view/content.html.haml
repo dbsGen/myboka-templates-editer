@@ -1,0 +1,6 @@
+.gen-map-skim{id: id}
+  - begin
+    - json = JSON(element.content)
+    %img.map{src: json['pic']}
+  - rescue StandardError => _
+    .err 地图读取失败

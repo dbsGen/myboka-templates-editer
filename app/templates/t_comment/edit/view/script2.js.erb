@@ -1,0 +1,31 @@
+<%- require "#{dynamic_path}/edit/view/color_list" %>
+<%- colors = ColorList.colors %>
+<%- colors.each do |color| %>
+wysihtml5ParserRules.classes['wysiwyg-color-<%= color %>'] = 1;
+<%- end %>
+var editor = new wysihtml5.Editor("<%= id %>", {
+    toolbar: "toolbar_<%= id %>",
+    parserRules:  wysihtml5ParserRules,
+    stylesheets: ['<%= assets_path(template, '/assets/wysihtml_colors.css') %>']
+});
+$('#<%= e_id %>').data('wysihtml5', editor);
+editor.on("keyup", check_content);
+//editor.on("load", function(){
+//    var html = "<style>";
+    <!--<%- colors.each do |color| %>-->
+//    html += ".wysiwyg-color-<%= color %>{color: #<%= color %>}";
+    <!--<%- end %>-->
+//    html += "</style>";
+//    $(editor.composer.iframe.contentDocument.head).append(html);
+//});
+editor.on('aftercommand:composer', check_content);
+editor.on('active', function(){
+    var $this = $(this.textareaElement);
+    var parent = $this.parents('.c_content');
+    var selector = parent.find('ul#color-area');
+    var c = selector.find('li.wysihtml5-command-active').attr('data-wysihtml5-command-value');
+    if(typeof c == 'undefined') {
+        c = 'black';
+    }else c = '#' + c;
+    parent.find('.color-shower').css('background-color', c);
+});

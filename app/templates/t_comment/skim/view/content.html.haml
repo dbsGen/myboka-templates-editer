@@ -1,0 +1,22 @@
+-#为了区分同一个页面不同的组件需要获取外部传入的一个id
+-# params id 一个唯一标识
+-# params element 内容对象
+-# params comment 评论对象
+.v_content{:id => id}
+  - begin
+    - json = JSON(element.content)
+    .v_avatar
+      %img{src: avatar_url(element.creater, json['exp']), title: "#{element.creater.name}的头像"}
+    .v_info
+      = name_tag(element.creater)
+      = (element.created_at || Time.now).strftime('%F')
+      = comment_action_tag(comment)
+      %span.pull-right= "##{comment.flood}"
+    .v_in_content
+      = raw add_quote(json['content'], element.quote_info)
+  - rescue Exception => e
+    - logger.info "#### Comments get a error #{e}"
+    .v_avatar
+      %img{src: avatar_url(element.creater), title: "#{element.creater.name}的头像"}
+    .v_content
+      = raw add_quote(element)

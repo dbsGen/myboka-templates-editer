@@ -1,0 +1,18 @@
+-#为了区分同一个页面不同的组件需要获取外部传入的一个id
+-# params id 一个唯一标识
+-# params element 内容对象
+-# params dynamic_path 动态文件的路径
+-# params static_path 静态文件的路径
+-# element_comment_path 添加评论的地址
+
+.s_comment_skim{id:id, src: element_comment_path}
+  .s_shower
+    = element.content
+  #selection_shower
+  #comment_display
+  .s_comment
+    %input{placeholder: '输入评论', stlye: 'width: 100px'}
+    %button.button.btn{type: 'button', url: element_comment_path} 提交
+    #s_helper
+  = javascript_defer_tag 'window.initCommentingString == null || rangy123.createCssClassApplier == null ' , "#{dynamic_path}skim/view/script.js.erb",
+  id: id

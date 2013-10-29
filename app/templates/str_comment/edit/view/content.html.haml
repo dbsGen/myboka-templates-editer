@@ -1,0 +1,10 @@
+-#为了区分同一个页面不同的组件需要获取外部传入的一个id
+-# params id 一个唯一标识
+-# params default 默认内容
+-# params dynamic_path 动态文件的路径
+-# params template_info template.yml 中的Hash内容
+-# assets_path(template, path) 获得静态文件的开放路径
+-# avatar_url(user, expression) 获得用户的头像
+
+.s_comment_edit{for:id}
+  %textarea.span8{id: id}= default

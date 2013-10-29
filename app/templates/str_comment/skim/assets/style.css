@@ -1,0 +1,40 @@
+
+.s_comment_skim > .s_comment{
+    display: none;
+    position: absolute;
+    z-index: 30;
+    background-color: #ffffff;
+    border-radius: 3px;
+    padding: 3px;
+    box-shadow: 1px 1px 2px #444;
+}
+
+.s_comment_skim > .s_shower {
+    word-break: break-all;
+}
+
+.s_comment_skim > .s_comment > #s_helper {
+    font-size: 11px;
+    color: red;
+}
+
+.s_comment_skim > #selection_shower .s_selected {
+    background-color: #8888ff;
+}
+.s_comment_skim > #selection_shower {
+    display: none;
+}
+
+.s_comment_skim > #comment_display {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 3px;
+    padding: 3px;
+    box-shadow: 1px 1px 2px #444;
+    z-index: 29;
+}
+
+.s_comment_skim {
+    position: relative;
+}

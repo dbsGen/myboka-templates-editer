@@ -1,0 +1,40 @@
+<%- require "#{dynamic_path}/edit/view/color_list" %>
+<%- colors = ColorList.colors %>
+wysihtml5ParserRules.classes = wysihtml5ParserRules.classes || {};
+<%- colors.each do |color| %>
+wysihtml5ParserRules.classes['wysiwyg-color-<%= color %>'] = 1;
+<%- end %>
+var editor = new wysihtml5.Editor("<%= id %>", {
+    toolbar: "toolbar_<%= id %>",
+    parserRules:  wysihtml5ParserRules,
+    stylesheets: ['<%= assets_path(template, '/assets/style.css') %>', '<%= assets_path(template, '/assets/colors.css') %>']
+});
+$('#<%= id %>').data('wysihtml5', editor);
+editor.on('active', function(){
+    var $this = $(this.textareaElement);
+    var parent = $this.parents('.simple-text-content');
+    var selector = parent.find('ul.font-group');
+    //检查字号
+    var c = selector.find('li.font-btn.wysihtml5-command-active').attr('data-wysihtml5-command-value');
+    var text = '普通';
+    if (c == 'large') {
+        text = '大号';
+    }else if (c == 'x-large') {
+        text = '超大';
+    }else if (c == 'small') {
+        text = '小号';
+    }else if (c == 'x-small') {
+        text = '超小';
+    }
+    parent.find('.font').children('div').text(text);
+    //检查颜色
+    selector = parent.find('ul.color-group');
+    c = selector.find('li.wysihtml5-command-active').attr('data-wysihtml5-command-value');
+    if(typeof c == 'undefined') {
+        c = 'black';
+    }else c = '#' + c;
+    parent.find('.color div').css('background-color', c);
+
+    //检查图片
+    checkImage(parent.find('.image-add input[data-wysihtml5-dialog-field="src"]').first());
+});

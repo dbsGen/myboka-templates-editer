@@ -1,0 +1,13 @@
+%table.offset2.span8{style: 'margin-top: 20px'}
+  %tr
+    %th 名称
+    %th 版本
+    %th 动作
+  - @templates.each do |template|
+    %tr
+      %td= link_to template.name, template_path(name: template.name, version: template.version)
+      %td= template.version
+      %td
+        = link_to '查看模式', skim_template_path(name: template.name, version: template.version)
+        = link_to '编辑模式', edit_template_path(name: template.name, version: template.version)
+        = link_to '打包', zip_template_path(name: template.name, version: template.version)
