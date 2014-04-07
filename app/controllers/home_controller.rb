@@ -18,29 +18,35 @@ class HomeController < ApplicationController
       @content_path = "#{@template.dynamic_path}/skim/view/content"
     elsif @template.type == 'blog'
       type = params[:type]
+      proc = Proc.new do
+        @articles = Article.default_articles
+        if @articles.nil? or @articles.size == 0
+          render status: 403, json: {code: 403, msg: '没有更多..'}
+        else
+          render file: "#{@template.dynamic_path}/skim/view/#{type.nil? ? 'content.js':"#{type}.js"}", layout: nil
+        end
+      end
       respond_to do |format|
         format.html do
-          @content_path = "#{@template.dynamic_path}/skim/view/#{type}"
-          @content_path = "#{@template.dynamic_path}/skim/view/content" if type.nil? or !File.exist?(@content_path)
-          @articles = Article.default_articles
-          @user = User.default_user
-          @user.blog_setting = Hashie::Mash.new(
-              @template.name => @template.settings{params[:setting]},
-              public_settings: {
-                  title: '标题',
-                  description: '简介'
-              }
-          )
-          render file: "#{@template.dynamic_path}/skim/view/layout", layout: 'blog'
-        end
-        format.js do
-          @articles = []
-          if @articles.nil? or @articles.size == 0
-            render status: 403, json: {code: 403, msg: '没有更多..'}
+          if request.method == 'POST'
+            proc.call
           else
-            render file: "#{@template.dynamic_path}/skim/view/#{type.nil? ? 'content.js':"#{type}.js"}"
+            @content_path = "#{@template.dynamic_path}/skim/view/#{type}"
+            @content_path = "#{@template.dynamic_path}/skim/view/content" if type.nil? or !File.exist?(@content_path)
+            @articles = Article.default_articles
+            @user = User.default_user
+            @user.blog_setting = Hashie::Mash.new(
+                @template.name => @template.settings{params[:setting]},
+                public_settings: {
+                    title: '标题',
+                    description: '简介',
+                    pages: [{id: 'p1', title: '第一页'}, {id: 'p2', title: '第二页'}]
+                }
+            )
+            render file: "#{@template.dynamic_path}/skim/view/layout", layout: 'blog'
           end
         end
+        format.js &proc
       end
     end
   end
@@ -76,7 +82,7 @@ class HomeController < ApplicationController
       code = file.read
       results = progress_code(code)
     end
-    render json: {code:200, results: results}
+    render json: {code:200, results: results} unless self.response_body
   end
 
   def upload
@@ -112,7 +118,8 @@ class HomeController < ApplicationController
         @template.name => @template.settings{params[:setting]},
         public_settings: {
             title: '标题',
-            description: '简介'
+            description: '简介',
+            pages: [{id: 'p1', title: '第一页'}, {id: 'p2', title: '第二页'}]
         }
     )
     render file: "#{@template.dynamic_path}/skim/view/layout", layout: 'blog'

@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    = bk_javascript_include_tag 'edit/assets/upload.js'
+  %body
+    #key{style: 'display: none'}= params[:key]
+    %form{action: resources_path(redirect: api_path('get_rsc', type: 'edit', key: params[:key])), method: 'post', enctype: 'multipart/form-data'}
+      选择图片上传
+      %input{type: 'file', name: 'file'}
+      %button{type: 'submit'} 上传

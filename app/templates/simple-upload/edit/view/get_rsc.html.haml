@@ -1,0 +1,8 @@
+!!!
+%html
+  %head
+    = bk_javascript_include_tag 'edit/assets/get_rsc.js'
+  %body
+    #key{style: 'display: none'}= params[:key]
+    %img{src: params[:url], style: 'max-width: 200px; max-height: 200px; display: block'}
+    %a{href: api_path('up_iframe', type: 'edit', key: params[:key]), title: '重新上传'} 重新上传

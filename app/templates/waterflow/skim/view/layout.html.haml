@@ -1,0 +1,25 @@
+%style= "body{background: url('#{assets_url('skim/assets/food.png')}')}"
+%nav.navbar.navbar-inverse.navbar-fixed-top
+  .navbar-header
+    %button.navbar-toggle{type: 'button', 'data-toggle' => 'collapse', 'data-target' => '#navbar-collapse-1'}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    = link_to public_settings.title || '主页', root_path, class: 'navbar-brand'
+  #navbar-collapse-1.collapse.navbar-collapse
+    %ul.nav.navbar-nav
+      - unless public_settings.pages.nil?
+        - public_settings.pages.each do |page|
+          %li
+            %a{href: collection_path(page.id), title: page.title}= page.title
+    #search-form.navbar-form.navbar-right{role: 'search'}
+      %input{type:'text', search: 'true', style: 'display: none'}
+      .input-group
+        %input#search-input.form-control{type: 'text', placeholder: '搜索'}
+        %span.input-group-btn
+          %button.search.btn
+            %span.glyphicon.glyphicon-search
+.search-result.clearfix
+.container
+  = render_content

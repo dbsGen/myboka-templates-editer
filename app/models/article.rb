@@ -33,6 +33,11 @@ class Article
     article
   end
 
+  def summary
+    return @content unless @summary
+    @summary
+  end
+
   private
   ARTICLE_FILE = "#{Rails.root}/app/models/articles.yml"
 

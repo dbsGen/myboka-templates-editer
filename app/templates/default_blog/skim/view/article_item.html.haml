@@ -1,4 +1,4 @@
-- cache ['main', object, object.creater], expires_in: 1.hour do
+- cache_article_item(object) do
   .article-item
     .top
       .mark
@@ -6,20 +6,20 @@
         %a{href: article_path(object)}= object.title
         .subtitle
           .item
-            %span.icon-user-2
+            %span.icon-user
             = name_tag(object.creater, class: 'reversion')
           .item.time
             %span.icon-clock
             = time_progress(object.created_at)
           .item
-            %span.icon-comments
+            %span.icon-bubbles
             = "#{object.comments.size} 评论"
           .item
             %span.icon-thumbs-up
             = "#{object.like_count}赞"
     .content
       - text_clip(object.summary) do |text, imgs|
-        = text
+        = raw text
         %br/
         - imgs.each do |img|
           = raw img

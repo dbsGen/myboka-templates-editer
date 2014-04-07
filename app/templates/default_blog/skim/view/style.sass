@@ -1,4 +1,4 @@
-$page-width: 980px
+$page-width: 640px
 $main-color: #1abc9c
 $black-color: #555
 $shadow-color: #b3b3b3
@@ -10,15 +10,12 @@ body
   background-color: #1abc9c
   margin: 0
   padding: 0
-  font-size: 12px
+  font-size: 13px
   font-family: '汉仪中黑简','微软雅黑','黑体',sans-serif
-.top-border
-  top: 5px
-  background-color: white
-  position: absolute
-  width: 100%
-  height: 67px
-  z-index: 0
+  div
+    box-sizing: border-box
+    -moz-box-sizing: border-box
+    -webkit-box-sizing: border-box
 
 @font-face
   font-family: 'Sniglet'
@@ -97,13 +94,12 @@ body
   margin: 0 0.5px
   //font-weight: bolder
   font-size: 13px
-  text-shadow: 0 1px 0 white
   border-radius: 2px
-  color: $gray-color
+  color: white
   &:hover, &.active
     @include alpha(1)
-    color: white
-    background-color: $main-color
+    color: $main-color
+    background-color: white
     text-shadow: none
 
 .myboka
@@ -118,7 +114,7 @@ body
   .hidden
     display: none
   input, textarea
-    font-family: iconFont, sans-serif
+    font-family: icomoon, sans-serif
     border: 1px solid #b3b3b3
     font-size: 12px
     border-radius: 2px
@@ -157,13 +153,21 @@ body
       height: 0
       clear: both
       visibility: hidden
+  .pages
+    padding: 4px 6px
+    overflow: hidden
+    .navbar
+      display: inline
+      .navitem,.navitem-last
+        @include nav-style
   .header
     @include row
     background-color: white
     height: 67px
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.3)
     .title
       padding: 0
-      margin: 0
+      margin: 5px
       color: $gray-color
       display: inline
       font-size: 40px
@@ -171,12 +175,6 @@ body
     .header-right
       @include pull-right
       margin-top: 16px
-      .navbar
-        display: inline
-        margin-right: 5px
-        .navitem,.navitem-last
-          @include nav-style
-
       .search
         @include  pull-right
         position: relative
@@ -249,15 +247,15 @@ body
 
 
   >.content
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.3)
     background-color: white
     border-bottom-left-radius: 3px
     border-bottom-right-radius: 3px
     @include row
     display: inline-block
-    width: 100%
-    padding: 30px 10px 20px 25px
+    width: $page-width
+    padding: 30px 20px 20px
     .top-information
-      width: 964px
       height: 136px
       border-radius: 2px
       overflow: hidden
@@ -317,7 +315,6 @@ body
             content: '"'
             font-style: italic
     #content-field
-      width: 960px
       margin-top: -25px
       .article-item
         color: $gray-color
@@ -333,7 +330,6 @@ body
             background-color: $main-color
           .title
             height: 53px
-            width: 540px
             float: left
             font-size: 18px
             margin-left: 17px
@@ -752,9 +748,10 @@ body
   .article
     img
       max-width: 600px
+      display: block
     .a-header
       @include bottom-border
-      padding: 34px 10px 10px 16px
+      padding: 0 10px 10px 16px
       text-align: center
       .title
         font-size: 20px
@@ -772,7 +769,7 @@ body
       text-shadow: 1px 1px 0 white
       @include bottom-border
   .article-comments
-    margin: 5px 0 4px 26px
+    margin: 4px 26px
     @include bottom-border
     .box
       margin: 5px
@@ -818,6 +815,11 @@ body
   .article-comment
     min-height: 138px
     margin-left: 26px
+    .c_input
+      width: auto
+      textarea
+        margin-top: -0.5px
+        padding: 4px 7px
 
   #article-replay
     margin-left: 10px
@@ -863,3 +865,10 @@ body
       padding: 0
       width: 40px
       float: left
+  code
+    background-color: $white-gray-color
+    border: 1px solid $gray-color
+    border-radius: 2px
+    display: inline-block
+    margin: 4px 10px
+    padding: 2px

@@ -1,0 +1,24 @@
+.skim-album-edit {
+    max-height: 400px;
+    padding: 5px;
+    border: 1px solid #333333;
+    overflow: auto;
+}
+
+.skim-album-edit .skim-album-edit-row {
+    width: 100%;
+    display: block;
+}
+
+.skim-album-edit .skim-album-edit-row .skim-album-edit-item {
+    width: 23%;
+    display: inline-block;
+    border: 1px solid #333333;
+    margin: 3px 1%;
+}
+
+.skim-album-edit .skim-album-edit-row .skim-album-edit-item img {
+    display: block;
+    height: auto;
+    width: 100%;
+}

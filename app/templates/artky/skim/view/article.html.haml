@@ -1,7 +1,7 @@
 = stylesheet_link_tag 'article/icon'
 #blog
   .post.bloger
-    - cache [@template, @article] do
+    - cache_article_content(@article) do
       %h2
         %a{href: ''}= @article.title
       %p= @article.edited_at.nil? ? @article.created_at.strftime('%F') : @article.edited_at.strftime('%F')

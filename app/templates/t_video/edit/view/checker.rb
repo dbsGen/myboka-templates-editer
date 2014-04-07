@@ -54,6 +54,15 @@ begin
       result[:type] = 'bilibili'
       result[:source] = url
       result
+    when url[/^http:\/\/www.acfun.com\//]
+      response = Net::HTTP.get(URI(url))
+      result = {}
+
+      doc = Nokogiri.parse response
+      result[:icode] = url[/(?<=^http:\/\/www.acfun.com\/v\/ac)\d+/]
+      result[:title] = doc.css('#txt-title-view').first.inner_text
+      result[:desc] = doc.css('#block-info-view .desc').first.inner_text
+      result[:pic] = doc.css
     else
       return 'miss'
   end

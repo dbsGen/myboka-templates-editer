@@ -1,0 +1,114 @@
+(function(){
+    var allSelector = '[search="true"]';
+    var pluginName = 'mybokaSearch';
+    var ObjectName = 'Search';
+
+    $[pluginName] = function(elements) {
+        elements.each(function(){
+            var $this = $(this), timer, old_key;
+            $this.data(ObjectName, {});
+            $('body').mouseup(function(){
+                $this.trigger('hideResult');
+            });
+            $this.mouseup(function(event){
+                event.stopPropagation();
+            });
+            $this.focus(function(){
+                if ($this.val().length > 0) $this.trigger('showResult');
+            });
+            $this.keyup(function(e){
+                if(e.which == 27){
+                    closeResult();
+                    $this.val('');
+                }
+                if($this.val().length > 0){
+                    //初始化
+                    if ($this.val() == old_key) return;
+                    var $result = $this.data(ObjectName).resultObject, $new;
+                    if($result == null) {
+                        $new = $('<div class="search-result" style="display: none"></div>');
+                        $new.appendTo('body');
+                        $result = $new;
+                        $this.data(ObjectName, {resultObject: $result});
+                        $this.trigger('resultInit', $result);
+                        $result.mouseup(function(event){
+                            event.stopPropagation();
+                        });
+                    }
+                    if($result.find('.r-loading').length == 0)
+                        $result.html('<div class="r-loading">搜索中...</div>');
+                    $result.slideDown();
+                    clearTimer();
+                    timer = setTimeout(function(){
+                        startSearch();
+                        timer = null;
+                    }, 1300);
+                } else closeResult()
+            });
+
+            var  clearTimer = function(){
+                if (timer) {
+                    clearTimeout(timer);
+                    timer = null;
+                }
+            };
+
+            $this.on('hideResult', function(){
+                closeResult();
+            });
+
+            $this.on('showResult', function(){
+                showResult();
+            });
+
+            $this.on('search', function(e, key){
+                startSearch(key);
+            });
+
+            var startSearch = function(val){
+                if(val == null) val = $this.val();
+                $.ajax_stop();
+                $.ajax_q({
+                    url: "<%= search_api_path %>?key=" + val + "&gs=true&name=<%= params[:name] %>&version=<%= params[:version] %>",
+                    success: function(data){
+                        showResult(data);
+                        old_key = val;
+                    }
+                })
+            };
+
+            var showResult = function(data){
+                var $result = $this.data(ObjectName).resultObject;
+                if ($result == null) $result = $('.search-result');
+                if(data) $result.html(data);
+                if ($result.css('display') == 'none')
+                    $result.slideDown();
+                $this.trigger('resultShow', $result);
+            };
+
+            var closeResult = function(){
+                clearTimer();
+                var $result = $('.search-result');
+                $result.slideUp();
+                $this.trigger('resultHide', $result);
+            };
+        });
+
+    };
+    $.fn[pluginName] = function(options){
+        if(typeof options == 'undefined') {
+            $[pluginName](this);
+        }else if(typeof options == 'string') {
+            var method = arguments[0], arg = [];
+            for (var n = 1; n < arguments.length; n++) {
+                arg.push(arguments[n])
+            }
+            $(this).trigger(method, arg)
+        }
+    };
+
+    $(document).ready(function(){
+        $(allSelector)[pluginName]();
+    });
+
+})();

@@ -5,7 +5,7 @@ template:
 #  模板名
   name: 'default_blog'
 #  模板的版本
-  version: 0.899
+  version: 0.95
 #  类型 content or blog
   type: 'blog'
 #  显示名称

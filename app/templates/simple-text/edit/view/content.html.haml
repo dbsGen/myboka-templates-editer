@@ -6,15 +6,14 @@
 .simple-text-content
   %div{:id => "toolbar_#{id}"}
     %ul.btn-group
-      %li.btn{'data-wysihtml5-command'=>"bold", :title => "粗体 CTRL+B"}
-        %i.icon-bold
-      %li.btn{'data-wysihtml5-command'=>"italic", :title => "斜体 CTRL+I"}
-        %i.icon-italic
-      %li.btn{'data-wysihtml5-command'=>"insertImage", :title => '插入图片'}
-        %i.icon-picture
-      %li.btn{'data-wysihtml5-command' => 'createLink', title: '添加链接'}
-        %i.icon-hand-up
-      %li.btn.font{title: '自体大小'}
+      %li.btn.btn-default#bold{'data-wysihtml5-command'=>"bold", :title => "粗体 CTRL+B"}
+      %li.btn.btn-default#italic{'data-wysihtml5-command'=>"italic", :title => "斜体 CTRL+I"}
+      %li.btn.btn-default{'data-wysihtml5-command'=>"insertImage", :title => '插入图片'}
+        %span.icon-pictures
+      %li.btn.btn-default#add-link{'data-wysihtml5-command' => 'createLink', title: '添加链接'}
+        %span.icon-link
+        %span.icon-minus
+      %li.btn.btn-default.font{title: '自体大小'}
         %div 普通
         %ul.font-group
           %li.font-btn{'data-wysihtml5-command-value'=>"x-large", 'data-wysihtml5-command'=>"fontSize"}
@@ -27,40 +26,40 @@
             小号
           %li.font-btn{'data-wysihtml5-command-value'=>"x-small", 'data-wysihtml5-command'=>"fontSize"}
             超小
-      %li.btn.color{title: '颜色选择'}
+      %li.btn.btn-default.color{title: '颜色选择'}
         %div
         %ul.color-group
-          - require "#{dynamic_path}/edit/view/color_list"
-          - ColorList.colors.each do |color|
+          - load_script "#{dynamic_path}/edit/view/color_list.rb"
+          - colors.each do |color|
             %li{'data-wysihtml5-command-value' => color, 'data-wysihtml5-command' => 'foreColor', style: "background-color:##{color}"}
-      %li.btn.switch{'data-wysihtml5-action' => 'change_view'}
-    %div{'data-wysihtml5-dialog' => 'createLink', :style => 'display:none'}
-      %label
-        %input{value: 'http://', 'data-wysihtml5-dialog-field' => 'href', type: 'text'}
-        .btn-group{style: 'display: inline'}
+      %li.btn.btn-default.switch{'data-wysihtml5-action' => 'change_view'}
+    .insert-link{'data-wysihtml5-dialog' => 'createLink', :style => 'display:none'}
+      .input-group
+        %input.form-control{value: 'http://', 'data-wysihtml5-dialog-field' => 'href', type: 'text'}
+        %span.input-group-btn
           %a.btn.btn-primary{'data-wysihtml5-dialog-action' => 'save', title: 'OK'}
-            %i.icon-ok
-          %a.btn{'data-wysihtml5-dialog-action' => 'cancel', title: '取消'}
-            %i.icon-remove
+            %i.icon-checkmark
+          %a.btn.btn-default{'data-wysihtml5-dialog-action' => 'cancel', title: '取消'}
+            %i.icon-close
     .clearfix.image-add{'data-wysihtml5-dialog' => 'insertImage', :style => 'display:none'}
       .clearfix
-        .pull-left
-          %label
-            %input{'data-wysihtml5-dialog-field' => 'src', placeholder: '链接', style: 'width: 140px', type: 'text'}
-            #display{style: 'width: 140px;display: none'}
-              本地图片
-              %i.icon-remove
+        .pull-left{style: 'width: 140px'}
+          %label#display{style: 'width: 140px;display: none', for: 'link'}
+            本地图片
+            %span.icon-close
+          %input#link.form-control{'data-wysihtml5-dialog-field' => 'src', placeholder: '链接', style: 'width: 140px', type: 'text'}
           .btn-group
             %button.btn.btn-primary{'data-wysihtml5-dialog-action' => 'save', title: '确定', disabled: true}
-              %i.icon-ok
-            %button.btn{'data-wysihtml5-dialog-action' => 'cancel', title: '取消'}
-              %i.icon-remove
-            %button.btn.btn-primary{title: '本地上传', upload: true}
+              %i.icon-checkmark
+            %button.btn.btn-default{'data-wysihtml5-dialog-action' => 'cancel', title: '取消'}
+              %i.icon-close
+            %button.btn.btn-primary{title: '本地上传', upload: true, check: 'jpg|png|jpeg|gif'}
               %i.icon-upload
         .pull-left.show-image
+          %span#progress-s
           .image-background
-          %img#simple-text-image{loading: assets_path('assets/loading.gif')}
-  = text_area_tag id, default, :class => 'span8', style: 'height: 150px'
+          %img#simple-text-image{loading: assets_url('assets/loading.gif')}
+  = text_area_tag id, default, :class => 'form-control', style: 'height: 240px'
   = javascript_defer_tag "'undefined' == typeof wysihtml5" , "#{dynamic_path}edit/view/script.js.erb",
   id: id, template: template_info, dynamic_path: dynamic_path
 

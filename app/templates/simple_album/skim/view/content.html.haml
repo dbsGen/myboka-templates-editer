@@ -1,0 +1,6 @@
+- require "#{dynamic_path}/skim/view/helper.rb"
+.skim-album-edit{id: id}
+  .skim-album-edit-content
+    = raw SimpleAlbumHelper.gallery_tag(element)
+  = javascript_defer_tag "'undefined' == typeof Code.photoSwipe" , dynamic_path + 'skim/view/script.js.erb',
+    id: id

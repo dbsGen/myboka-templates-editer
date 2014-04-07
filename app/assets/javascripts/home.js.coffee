@@ -3,7 +3,10 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 @skim_click = ->
-  $('#content').val($('#id_1').val())
+  value = $('#id_1').val()
+  if typeof value != 'string' or value.length == 0
+    value = $('#id_1').data('value')
+  $('#content').val(value)
   yes
 
 @formSubmit = (that) ->

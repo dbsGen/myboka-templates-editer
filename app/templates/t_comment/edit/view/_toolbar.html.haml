@@ -8,6 +8,7 @@
       %span.icon-pictures
     %button.btn.button{'data-wysihtml5-command' => 'createLink', style: 'height: 28px'}
       %span.icon-link
+      %span.icon-minus
     %button.btn.button.color-select{style: 'height: 28px', onclick: 'color_click(this)', 'data-wysihtml5-command-group' => 'foreColor'}
       .color-shower
     %ul#color-area
@@ -21,7 +22,7 @@
           %button.btn.button{'data-wysihtml5-dialog-action' => 'save', title: 'OK'}
             %span.icon-checkmark
           %button.btn.button{'data-wysihtml5-dialog-action' => 'cancel', title: '取消'}
-            %span.icon-cancel-2
+            %span.icon-close
     .tool-box{'data-wysihtml5-dialog' => 'insertImage', :style => 'display:none'}
       %label
         %input{'data-wysihtml5-dialog-field' => 'src'}
@@ -29,4 +30,4 @@
           %button.btn.button{'data-wysihtml5-dialog-action' => 'save', title: 'OK'}
             %span.icon-checkmark
           %button.btn.button{'data-wysihtml5-dialog-action' => 'cancel', title: '取消'}
-            %span.icon-cancel-2
+            %span.icon-close

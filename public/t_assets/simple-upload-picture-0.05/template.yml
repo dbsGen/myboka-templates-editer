@@ -1,0 +1,10 @@
+template:
+  name: simple-upload-picture
+  version: 0.05
+  screen_name: 最简图片上传
+  is_quote: false
+  type: content
+  summary: 使用最原始的方式上传图片，以让一些（手机）浏览器能够顺利上传图片。
+  edit_path:
+    - edit/assets/main.js
+    - edit/assets/style.css

@@ -2,7 +2,9 @@
 %html
   %head
     %title= public_settings.title.nil? ? 'MyBoKa-我的博卡' : public_settings.title
-    = javascript_include_tag 'jquery'
+    = javascript_include_tag 'blog'
+    %script{type: 'text/javascript', src: search_js_path('js', name: params[:name], version: params[:version])}
+    = stylesheet_link_tag 'article/icon'
     - @template.paths 'skim_path' do |js, css|
       - js.each do |jf|
         = bk_javascript_include_tag jf.path

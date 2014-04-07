@@ -1,0 +1,14 @@
+template:
+  name: simple_album
+  version: 0.02
+  screen_name: 简单相册
+  is_quote: false
+  type: content
+  summary: 一个简单的相册，可以让用户方便的上传多张图片。
+  edit_path:
+    - edit/assets/style.css
+    - edit/assets/script.js
+  skim_path:
+    - skim/assets/code-photoswipe-1.0.11.js
+    - skim/assets/photoswipe.css
+    - skim/assets/style.css

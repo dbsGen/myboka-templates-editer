@@ -1,0 +1,21 @@
+
+template:
+  name: waterflow
+  version: 0.04
+  type: blog
+  screen_name: 瀑布流型博客
+  cost: 200
+  summary: 以瀑布流方式图文并貌的展示你的个人博客。
+  # settings:
+  skim_path:
+    - bootstrap.min.css
+    - bootstrap-theme.min.css
+    - bootstrap.min.js
+    - messenger.css
+    - messenger.js
+    - messenger-theme-flat.css
+    - messenger-theme-flat.js
+    - messenger-theme-air.css
+    - 'skim/assets/style.css'
+    - 'skim/assets/script.js'
+    - 'skim/assets/jquery.grid-a-licious.js'

@@ -12,4 +12,5 @@
   .offset2.span8
     = link_to '编辑模式',
     edit_template_path(name: @template.name, version: @template.version, content: @element.content),
-    class: 'btn'
+    class: 'btn btn-default'
+    %a.btn.btn-default{href: the_root_path} 返回

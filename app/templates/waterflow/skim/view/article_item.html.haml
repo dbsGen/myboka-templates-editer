@@ -1,0 +1,6 @@
+%a.item{href: article_path(object),'pagination-key' => object.created_at.to_i}
+  .content
+    - text_clip(object.summary) do |text, imgs|
+      = raw imgs.first
+      %h4= object.title
+      = text

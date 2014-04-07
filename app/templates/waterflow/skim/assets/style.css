@@ -1,0 +1,266 @@
+@import url(http://fonts.googleapis.com/css?family=New+Rocker);
+@import url(http://fonts.googleapis.com/css?family=Ribeye);
+
+body {
+    font-family:'微软雅黑', '黑体',sans-serif ;
+    font-size: 13px;
+    word-break: break-all;
+}
+
+button.search {
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #666;
+    border-radius: 4px;
+    float: right;
+    margin: 0 5px;
+    padding: 6px 9px;
+    position: relative;
+    color: #aaa;
+}
+
+button.search:hover, button.search:focus {
+    background-color: #333;
+    color: white;
+}
+
+#content-field {
+    margin-top: 60px;
+}
+
+#content-field .item {
+    display: block;
+    box-shadow: 0 0 1px gray;
+    margin: 5px;
+    padding: 10px;
+    text-decoration: none;
+    color: #999;
+    background-color: white;
+}
+
+#content-field .item:hover {
+    background-color: #e0e0e0;
+    color: #555;
+}
+
+#content-field .item h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}
+
+#content-field .item img {
+    width: 100%;
+    margin: 2px;
+    border: 1px solid #888;
+    padding: 3px;
+}
+
+#bottom {
+    font-family: 'New Rocker', cursive;
+    font-size: 15px;
+    text-align: center;
+    width: 260px;
+    margin: 0 auto;
+}
+
+.article {
+    margin:  60px 20px 20px;
+    background-color: white;
+    box-shadow: 0 0 1px gray;
+    padding: 20px;
+    border-radius: 2px;
+}
+
+.article .title {
+    text-align: center;
+    padding: 0 10px 10px 10px;
+    border-bottom: 1px solid darkgray;
+    margin-bottom: 20px;
+}
+
+.article > .content {
+    padding: 0 20px 10px;
+    border-bottom: 1px solid darkgray;
+    margin-bottom: 5px;
+}
+.article > .content code {
+    word-break: break-all;
+    white-space: normal;
+}
+.article > .comments .article-comments {
+    padding: 15px;
+}
+
+.article > .comments .article-comments .box {
+    border: 1px solid #888;
+    margin: 2px;
+    padding: 3px;
+}
+
+.article > .comments .article-comments .box .v_content .v_avatar {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.article > .comments .article-comments .box .v_content:after {
+    content: '.';
+    height: 0;
+    visibility: hidden;
+    display: block;
+    clear: both;
+}
+
+.article > .comments .article-comments .box .v_info {
+    font-size: 12px;
+    color: #666;
+}
+
+.article > .comments .article-comments .box .r-box .v_info {
+    font-size: 11px;
+    color: #999;
+}
+
+.article > .comments .article-comments .box .r-box {
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    padding: 2px;
+}
+
+.article > .comments .article-comments .article-no-comment {
+
+}
+
+.article > .comments .article-comments .box .replied {
+    border: 1px dotted #ddd;
+    padding: 0 5px;
+    background-color: #fafafa;
+    margin: 2px;
+}
+
+.article > .comments .article-comments .box .replied:hover {
+    background-color: #eee;
+}
+
+.article > .comments .c_content .c_avatar {
+    display: none;
+}
+
+.article > .comments .c_content .c_input {
+    width: 100%;
+    height: 300px;
+    margin: 0;
+}
+
+.article > .comments .c_content .c_send {
+    float: right;
+    margin-top: -36px;
+    height: 34px;
+    width: 150px;
+    border: 1px solid #4CAE4C;
+    border-radius: 4px;
+    background-color: #5CB85C;
+    color: #FFFFFF;
+    position: relative;
+}
+
+.article > .comments .c_content .c_send:hover {
+    border-color: #398439;
+    background-color: #47A447;
+}
+
+.article > .comments .c_content .c_send:active {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+    outline: 0 none;
+    border-color: #398439;
+    background-color: #47A447;
+}
+
+.article > .comments .c_content .c_input > div {
+    display: inline-table;
+}
+
+.article > .comments #article-replay {
+    padding: 0 13px;
+    font-size: 14px;
+    color: #333;
+    font-family: 'Ribeye', cursive;
+}
+
+.article > .comments .c_content .c_input textarea {
+    width: 100%;
+    height: 260px;
+    border: 1px solid #aaa;
+}
+.article > .comments .c_content .c_input textarea:hover {
+    border: 1px solid #888;
+}
+.article > .comments .c_content .c_input textarea:active {
+    border: 1px solid #333;
+}
+
+.article > .comments .c_content .c_input .btn-group {
+    margin-top: 5px;
+}
+
+.article > .comments .c_content .c_input .btn-group .btn {
+    border: 1px solid #aaa;
+    height: 34px;
+}
+
+.article > .comments .article-comments .article-no-comment {
+    display: block;
+    margin: 4px auto;
+    width: 220px;
+    padding: 12px;
+    font-weight: bold;
+    border-bottom: 1px solid darkgray;
+    text-align: center;
+}
+
+.search-result {
+    width:230px;
+    background-color: #0011ee;
+    position: absolute;
+    top: 60px;
+    right: 39px;
+    display: none;
+}
+
+.search-result .dropdown-menu {
+    display: block;
+    width: 100%;
+}
+
+#search-form {
+    width: 270px;
+}
+
+@media (max-width: 768px) {
+    .article .content img{
+        max-width: 100%;
+    }
+    .article > .content {
+        padding: 0 0 10px;
+    }
+    .article {
+        margin: 60px 0 0;
+        padding: 5px;
+    }
+    .search-result {
+        width: 100%;
+        top: 120px;
+        left: 0;
+        position: fixed;
+        z-index: 1031;
+    }
+    #search-form {
+        width: auto;
+    }
+}
+
+@media (max-width: 450px) {
+    .article > .comments .c_content .c_send {
+        float: none;
+        margin-top: 0;
+    }
+}

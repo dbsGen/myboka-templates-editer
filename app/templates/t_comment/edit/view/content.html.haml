@@ -3,12 +3,12 @@
 -# params default 默认内容
 -# params dynamic_path 动态文件的路径
 -# params template_info template.yml 中的Hash内容
--# assets_path(template, path) 获得静态文件的开放路径
+-# assets_url(template, path) 获得静态文件的开放路径
 -# avatar_url(user, expression) 获得用户的头像
 -#
 - limit = template_info['limit']
 .c_content{id: id}
-  .c_avatar.big_avatar{onclick: 'show_avatars(this)'}
+  .c_avatar{onclick: 'show_avatars(this)'}
     %img.big_avatar{src: avatar_url(current_user)}
     .c_triangle
   .c_groups{style: 'display: none'}

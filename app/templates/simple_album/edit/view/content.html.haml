@@ -1,0 +1,9 @@
+.simple-album-edit{id: id}
+  .simple-album-edit-content
+    .simple-album-edit-add-picture{upload: 'upload', check: 'jpg|png|jpeg|gif'}
+      %span.simple-album-edit-progress 100
+      %span#simple-album-edit-new.icon-plus
+  .simple-album-edit-state-bar
+    %span.simple-album-edit-count 0
+  = javascript_defer_tag "'undefined' == typeof window.simpleAlbum" , "#{dynamic_path}/edit/view/get_default.js.erb" ,
+      id: id, default: default

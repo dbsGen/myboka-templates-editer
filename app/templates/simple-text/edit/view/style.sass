@@ -1,8 +1,8 @@
 .simple-text-content
   .font
     position: relative
-  ul.btn-group
-    margin: 0
+  ul
+    padding: 0
   .btn
     cursor: pointer
   .font-group
@@ -38,7 +38,7 @@
     >.color-group
       position: absolute
       display: none
-      width: 80px
+      width: 85px
       padding: 2px
       background-color: #ffffff
       box-shadow: 1px 0 2px #555
@@ -68,8 +68,8 @@
       background: black
   .simple-text-content
     position: relative
-    >div > .btn-group .btn
-      height: 20px
+  .btn-group .btn
+    height: 34px
 
   .image-add
     padding: 2px
@@ -82,23 +82,32 @@
     top: 30px
     z-index: 11
     width: 230px
-    height: 70px
+    height: 76px
     input[data-wysihtml5-dialog-field='src']
       margin-bottom: 0
     .show-image
       width: 66px
       height: 66px
-      margin: 2px
+      margin: 2px 0 2px 12px
       position: relative
+      font-size: 18px
+      font-weight: bold
+      color: #999
+      text-align: center
+      padding: 20px 0
       > #simple-text-image
-        max-height: 66px
-        max-width: 66px
-        position: relative
-        z-index: 12
+        width: 66px
+        height: 66px
+        left: 0
+        top: 0
+        position: absolute
+        z-index: 11
+        display: none
+        &[src]
+          display: block
       > .image-background
-        width: 50px
-        height: 50px
-        left: 4px
+        width: 60px
+        height: 60px
         top: 4px
         border: 4px dashed #999
         border-radius: 14px
@@ -106,10 +115,39 @@
         z-index: 11
     #display
       margin: 8px 3px
-      .icon-cancel
+      .icon-close
         cursor: pointer
+    #link
+      margin-bottom: 2px
+  .insert-link
+    width: 240px
+    margin-bottom: 5px
+    .form-control
+      height: 34px
+    .btn
+      height: 34px
   .switch
     &:before
       content: 'HTML'
     &.wysihtml5-action-active:before
       content: 'Preview'
+  #bold
+    font-weight: bolder
+    &:before
+      content: 'B'
+    &.wysihtml5-command-active
+      font-weight: normal
+  #italic
+    font-style: italic
+    &:before
+      content: 'I'
+    &.wysihtml5-command-active
+      font-style: normal
+  #add-link
+    .icon-minus
+      display: none
+    &.wysihtml5-command-active
+      .icon-minus
+        display: inline
+      .icon-link
+        display: none

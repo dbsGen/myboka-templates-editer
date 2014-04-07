@@ -71,17 +71,12 @@ module HomeHelper
     render h
   end
 
-  def bk_template_path(path)
-    "#{@template.dynamic_path}/#{path}"
-  end
-
   def article_path(article)
     article_item_path(article.id, name: params[:name], version: params[:version])
   end
 
   def text_clip(content, limit = 250)
     content ||= ''
-    content = replace_tp_tag(content)
     doc = Nokogiri::HTML(content)
     images = []
     doc.css('img').each do |img|
@@ -93,12 +88,6 @@ module HomeHelper
       yield text, images
     else
       raw "#{text.nil? or text.length == 0 ? '' : "#{text} <br/>"} #{images.join('')}"
-    end
-  end
-
-  def replace_tp_tag(content)
-    content.gsub(/<img[^>]+data-tp=[^>]+>/) do |_|
-      ''
     end
   end
 
@@ -117,9 +106,12 @@ module HomeHelper
   end
 
   def avatar_url(user, expression = nil)
-    h = {email:user.email}
-    h[:expression] = expression unless expression.nil?
-    "#{'http://www.mingp.net/'}public/avatar?#{ URI.encode_www_form(h) }"
+    if user.nil?
+      key = 'none'
+    else
+      key = Digest::MD5.hexdigest(user.is_a?(User) ? user.email : user)
+    end
+    "#{'https://mingp.net/'}public/avatar/#{key}#{expression.nil? ? '' : '?' + URI.encode_www_form({expression: expression})}"
   end
 
   def render_article_content
@@ -127,17 +119,11 @@ module HomeHelper
   end
 
   def render_comments
-    html = ''
-    html << '<div class="article-comment" style="height: 150px">'
-    html << '<div style="border:5px dashed #cccccc; height: 80%; margin: 20px;text-align: center; vertical-align:middle;border-radius:20px">'
-    html << '<div style="margin-top:45px"><span style="font-size: 40px; color: #cccccc">评论信息</span></div>'
-    html << '</div>'
-    html << '</div>'
-    raw html
+    render partial: 'tools/comments'
   end
 
   def render_add_comment
-    raw '<div>添加评论</div>'
+    render partial: 'tools/add_comment'
   end
 
   def follow_button_tag(user)
@@ -193,12 +179,12 @@ module HomeHelper
     hash
   end
 
-  def assets_path(template, path = nil)
+  def assets_url(template, path = nil)
     if template.is_a? String and path.nil?
       path = template
       template = @template
     end
-    static_file_url(name: template.name, version: template.version, path: path)
+    static_file_url(path)
   end
 
   #博客主
@@ -304,8 +290,13 @@ $(document).ready(function(){
   protected
   def insert_path(*sources)
     url = sources.first.shift
-    url = static_file_url(name: @template.name, version: @template.version, path: url) if url[/^\w+:\/\//].nil?
-    sources.first.unshift url
+    paths = Dir["#{Rails.root}/public/p_assets/*/#{url}"]
+    if paths and paths.size > 0
+      sources.first.unshift paths.first.gsub("#{Rails.root}/public/", '/')
+    else
+      url = static_file_url(url) if url[/^\w+:\/\//].nil?
+      sources.first.unshift url
+    end
     sources
   end
 end

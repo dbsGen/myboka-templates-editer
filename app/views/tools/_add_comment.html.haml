@@ -1,0 +1,23 @@
+= stylesheet_link_tag 'article/comment'
+.article-comment
+  #article-edit
+    #article-replay
+      >> #1
+      %a
+        %i.icon-close
+    .edit_element
+      .c_content
+        .c_avatar.big_avatar
+          %img.big_avatar
+          .c_triangle
+        .c_input
+          %textarea
+          %div
+            .btn-group
+              %button.btn.button B
+              %button.btn.button I
+              %button.btn.button
+                %span.icon-pictures
+              %button.btn.button
+                %span.icon-link
+        %button.c_send.button 发送

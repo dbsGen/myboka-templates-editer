@@ -1,0 +1,26 @@
+-# 重载评论模板
+.content
+  .v_content{:id => id}
+    - element = comment.elements.first
+    - json = JSON(element.content)
+    .v_avatar
+      %img{src: avatar_url(comment.creater, json['exp']), title: "#{comment.creater.name}的头像"}
+    .v_info
+      = name_tag(comment.creater)
+      = (comment.created_at || Time.now).strftime('%F')
+      = comment_action_tag(comment)
+      %span.pull-right= "##{comment.flood}"
+    - reply_to = comment.reply_to
+    - begin
+      .v_in_content
+        - if reply_to
+          = name_tag(reply_to.creater, class: 'strong')
+          = ' << '
+        = raw add_quote(json['content'], element.quote_info)
+    - rescue Exception => e
+      - logger.info "#### Comments get a error #{e}"
+      .v_in_content
+        - if reply_to
+          = name_tag(reply_to.creater, class: 'strong')
+          = ' << '
+        = raw add_quote(element)

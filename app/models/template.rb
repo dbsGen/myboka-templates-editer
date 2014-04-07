@@ -65,6 +65,18 @@ class Template
     self.screen_name = template['screen_name']
     self.dynamic_path = path
     self.description = template
+    # 把静态文件复制到public下
+    Dir["#{path}/**/*"].each do |fp|
+      unless fp[/^#{path}\/(skim|edit)\/view/]
+        des = "#{Rails.root}/public/t_assets/#{self.name}-#{self.version}#{fp.gsub(path, '')}"
+        begin
+          FileUtils.cp(fp, des) unless File.directory?(fp)
+        rescue Errno::ENOENT
+          _mkdir(File.dirname(des))
+          retry
+        end
+      end
+    end
   end
 
   def paths(key = 'edit_path')
@@ -106,5 +118,16 @@ class Template
 
   def folder_name
     "#{name}-#{version}"
+  end
+
+  private
+
+  def _mkdir(dir)
+    begin
+      FileUtils.mkdir(dir)
+    rescue Errno::ENOENT
+      _mkdir(File.dirname(dir))
+      retry
+    end
   end
 end

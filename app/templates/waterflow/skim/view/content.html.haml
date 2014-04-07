@@ -1,0 +1,6 @@
+= bk_javascript_include_tag 'skim/assets/roller.js'
+#content-field{'pagination-url' => pagination_url(type: 'pagination')}
+  - @articles.each do |article|
+    = render file: bk_template_path('skim/view/article_item'),
+    locals: {object: article}
+#bottom Over

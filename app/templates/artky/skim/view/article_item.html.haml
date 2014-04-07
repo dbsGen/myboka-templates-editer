@@ -1,11 +1,12 @@
 - if !header
-  .post{'pagination-key' => object.created_at.to_i}
-    %h2
-      = link_to(object.title, article_path(object))
-    .entry
-      - text_clip object.summary do |text, images|
-        - images.each do |image|
-          %p= raw image
-        = text
-    .entry-meta
-      = link_to('Read more', article_path(object))
+  - cache_article_item(object) do
+    .post{'pagination-key' => object.created_at.to_i}
+      %h2
+        = link_to(object.title, article_path(object), title: object.title)
+      .entry
+        - text_clip object.summary do |text, images|
+          - images.each do |image|
+            %p= raw image
+          = raw text
+      .entry-meta
+        = link_to('Read more', article_path(object))

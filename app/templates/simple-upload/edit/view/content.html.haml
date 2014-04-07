@@ -1,0 +1,6 @@
+.simple-upload-picture{id: id}
+  - begin
+    - object = JSON(default)
+    %iframe.simple-upload-picture-iframe{src: api_path('get_rsc', type: 'edit', key: id, url: object['pic'])}
+  - rescue StandardError => e
+    %iframe.simple-upload-picture-iframe{src: api_path('up_iframe', type: 'edit', key: id)}

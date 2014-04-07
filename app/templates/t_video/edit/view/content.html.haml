@@ -9,7 +9,9 @@
     - content = JSON(default)['source']
   - rescue StandardError => _
     - content = default
-  %input.span3{placeholder: '视频地址', type:'text', src: api_path('checker', type: 'edit'), for: id, value: content}
+  .row
+    .col-md-6
+      %input.form-control{placeholder: '视频地址', type:'text', src: api_path('checker', type: 'edit'), for: id, value: content}
   - if !content.nil? and content.size > 0
     = javascript_tag do
       check_url($("##{id}").children('input')[0])

@@ -1,0 +1,6 @@
+.skim-simple-upload{id: id}
+  - begin
+    - object = JSON(element.content)
+    %img{src: object['pic']}
+  - rescue StandardError => e
+    不能读取图片

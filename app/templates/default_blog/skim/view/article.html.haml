@@ -1,5 +1,5 @@
-- cache [@template, @article] do
-  %style= ".content{margin-top: 2px}\n.myboka .content #left{padding: 0 15px 0 0 !important}"
+- cache_article_content(@article) do
+  %style= ".myboka .content #left{padding: 0 15px 0 0 !important}"
   .article
     .a-header
       .title= @article.title

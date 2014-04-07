@@ -1,0 +1,4 @@
+%ul.dropdown-menu{role: 'menu'}
+  - @articles.each do |article|
+    %li{role: 'presentation'}
+      = link_to article.title || '空白', article_path(article), title: article.title

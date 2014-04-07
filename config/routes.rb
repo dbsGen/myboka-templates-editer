@@ -51,17 +51,22 @@ TemplateEditer::Application.routes.draw do
   # root :to => 'welcome#index'
 
   root to: 'Home#index'
+  get '/'=> 'Home#index', as: 'the_root'
 
   get 'template' => 'Home#template', as: 'template'
   match 'template/skim' => 'Home#skim', as: 'skim_template'
   match 'template/edit' => 'Home#edit', as: 'edit_template'
   get 'template/zip'    => 'Home#zip',  as: 'zip_template'
   get 'template/upload' => 'Home#upload', as: 'upload_template'
-  get 'file' => 'Home#static_file', as: 'static_file'
   get 'article/:id' => 'Home#article', as: 'article_item'
   get 'collections/:type' => 'Home#skim', as: 'collection'
   match 'api/:id' => 'Home#api', as: 'm_api'
   match 'element/comments' => 'Home#element_comment', as: 'element_comment'
+
+  get 'search' => 'Tools#search', as: 'search_js'
+  get 'search_api' => 'Tools#search_api', as: 'search_api'
+
+  resources :resources, only: [:create]
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,0 +1,8 @@
+- if @articles.size > 0
+  .r-header 文章
+  - @articles.each do |article|
+    %a.r-article{href: article_path(article), target: '_blank'}
+      .r-title= article.title
+      = text_clip(object.summary)
+- else
+  .r-noone 没有结果

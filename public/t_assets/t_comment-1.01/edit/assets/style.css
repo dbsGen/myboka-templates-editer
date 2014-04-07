@@ -1,0 +1,179 @@
+.c_content {
+    padding: 3px 10px;
+    clear: both;
+    position: relative;
+}
+
+.c_content:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.c_content .c_avatar {
+    position: relative;
+    float: left;
+    padding: 3px;
+    border: 1px solid #222;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    transition: all 1s;
+    -moz-transition: all 1s;	/* Firefox 4 */
+    -webkit-transition: all 1s;	/* Safari 和 Chrome */
+    -o-transition: all 1s;	/* Opera */
+}
+.c_content .c_avatar:hover {
+    background-color: #46b8da;
+}
+.c_content .c_avatar img {
+    /*position: absolute;*/
+    transition: all 1s;
+    -moz-transition: all 1s;	/* Firefox 4 */
+    -webkit-transition: all 1s;	/* Safari 和 Chrome */
+    -o-transition: all 1s;	/* Opera */
+}
+.c_content .c_avatar:hover img {
+    transform:rotate(3deg) scale(1.1, 1.1);
+    -ms-transform:rotate(3deg) scale(1.1, 1.1); /* Internet Explorer */
+    -moz-transform:rotate(3deg) scale(1.1, 1.1); /* Firefox */
+    -webkit-transform:rotate(3deg) scale(1.1, 1.1); /* Safari 和 Chrome */
+    -o-transform:rotate(3deg) scale(1.1, 1.1); /* Opera */
+}
+.c_content .c_avatar .c_triangle {
+    width: 0;
+    height: 0;
+    border: 5px solid;
+    border-color:#000000 transparent transparent transparent;
+    position: absolute;
+    right: 5px;
+    bottom: 1px;
+    z-index: 10;
+}
+
+.c_content .c_avatar:hover .c_triangle {
+    border: 6px solid;
+    border-color:#000000 transparent transparent transparent;
+    right: 4px;
+    bottom: 0;
+}
+.c_content .c_avatar:active .c_triangle {
+    border: 6px solid;
+    border-color:#000000 transparent transparent transparent;
+    right: 3px;
+    bottom: -1px;
+}
+.c_content .c_groups {
+    position: absolute;
+    top: 68px;
+    clear: both;
+    z-index: 11;
+}
+.c_content .c_groups .c_avatar {
+    float: left;
+}
+.c_content .c_input {
+    float: left;
+    height: 86px;
+    width: 350px;
+    margin-left: 10px;
+    position: relative;
+}
+.c_content .c_input textarea {
+    width: 336px;
+    height: 46px;
+    margin-bottom: 0;
+}
+.c_content .c_input .tips {
+    position: absolute;
+    right: 10px;
+    bottom: 3px;
+    font-size: 12px;
+    color: #aaaaaa;
+}
+.c_content .c_input .tips.overflow {
+    color: red;
+}
+.c_content button.c_send {
+    height: 56px;
+    width: 56px;
+    float: left;
+    margin-left: 5px;
+}
+
+.big_avatar {
+    width: 46px;
+    height: 46px;
+}
+.small_avatar {
+    width: 34px;
+    height: 34px;
+}
+.c_content .color-select {
+    position: relative;
+}
+.c_content .color-select .color-shower {
+    background-color: black;
+    width: 13px;
+    height: 13px;
+    margin: 3px auto;
+}
+.c_content ul#color-area {
+    position: absolute;
+    display: none;
+    width: 85px;
+    padding: 2px;
+    background-color: #ffffff;
+    box-shadow: 1px 0 2px #555;
+    -moz-box-shadow: 1px 0 2px #555;
+    border-radius: 2px;
+    left: 160px;
+    top: 30px;
+    margin: 0;
+}
+.c_content ul#color-area li{
+    width: 5px;
+    height: 5px;
+    list-style: none;
+    float: left;
+}
+.c_content ul#color-area li:hover{
+    box-shadow: 0 0 2px black;
+    -moz-box-shadow: 0 0 2px black;
+    position: relative;
+}
+
+.c_content ul#color-area li.wysihtml5-command-active {
+    box-shadow: 0 0 2px black;
+    -moz-box-shadow: 0 0 2px black;
+    position: relative;
+}
+
+.c_content [data-wysihtml5-command=bold] span {
+    font-weight: bold;
+}
+.c_content [data-wysihtml5-command=bold].wysihtml5-command-active span {
+    font-weight: normal;
+}
+
+.c_content [data-wysihtml5-command=italic] span {
+    font-style: italic;
+}
+.c_content [data-wysihtml5-command=italic].wysihtml5-command-active span {
+    font-style: normal;
+}
+
+.c_content .tool-box {
+    position: absolute;
+    padding: 2px;
+    background-color: #ffffff;
+    box-shadow: 1px 0 2px #555;
+    -moz-box-shadow: 1px 0 2px #555;
+    border-radius: 2px;
+    left: 60px;
+    top: 30px;
+    margin: 0;
+}
+
+

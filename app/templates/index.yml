@@ -1,8 +1,11 @@
 ---
-artky_0.2: /home/gen/Project/template_editer/app/templates/artky/
-t_video_0.73: /home/gen/Project/template_editer/app/templates/t_video/
-sign_text_0.26: /home/gen/Project/template_editer/app/templates/str_comment/
-default_blog_0.899: /home/gen/Project/template_editer/app/templates/default_blog/
-gen-map_0.33: /home/gen/Project/template_editer/app/templates/gen-map/
-simple_text_0.5: /home/gen/Project/template_editer/app/templates/simple-text/
-t_comment_0.96: /home/gen/Project/template_editer/app/templates/t_comment/
+artky_0.3: /home/gen/Project/template_editer/app/templates/artky/
+simple-upload-picture_0.05: /home/gen/Project/template_editer/app/templates/simple-upload/
+t_video_0.74: /home/gen/Project/template_editer/app/templates/t_video/
+sign_text_0.28: /home/gen/Project/template_editer/app/templates/str_comment/
+default_blog_0.94: /home/gen/Project/template_editer/app/templates/default_blog/
+gen-map_0.36: /home/gen/Project/template_editer/app/templates/gen-map/
+simple_album_0.13: /home/gen/Project/template_editer/app/templates/simple_album/
+simple_text_0.74: /home/gen/Project/template_editer/app/templates/simple-text/
+waterflow_0.05: /home/gen/Project/template_editer/app/templates/waterflow/
+t_comment_1.04: /home/gen/Project/template_editer/app/templates/t_comment/

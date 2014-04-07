@@ -1,5 +1,4 @@
-<%- require "#{dynamic_path}/edit/view/color_list" %>
-<%- colors = ColorList.colors %>
+<%- load_script "#{dynamic_path}/edit/view/color_list.rb" %>
 wysihtml5ParserRules.classes = wysihtml5ParserRules.classes || {};
 <%- colors.each do |color| %>
 wysihtml5ParserRules.classes['wysiwyg-color-<%= color %>'] = 1;
@@ -7,9 +6,9 @@ wysihtml5ParserRules.classes['wysiwyg-color-<%= color %>'] = 1;
 var editor = new wysihtml5.Editor("<%= id %>", {
     toolbar: "toolbar_<%= id %>",
     parserRules:  wysihtml5ParserRules,
-    stylesheets: ['<%= assets_path(template, '/assets/style.css') %>', '<%= assets_path(template, '/assets/colors.css') %>']
+    stylesheets: ['<%= assets_url(template, '/assets/style.css') %>', '<%= assets_url(template, '/assets/colors.css') %>']
 });
-$('#<%= id %>').data('wysihtml5', editor);
+$("#<%= id %>").data('wysihtml5', editor);
 editor.on('active', function(){
     var $this = $(this.textareaElement);
     var parent = $this.parents('.simple-text-content');

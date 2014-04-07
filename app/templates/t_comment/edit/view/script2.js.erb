@@ -6,7 +6,7 @@ wysihtml5ParserRules.classes['wysiwyg-color-<%= color %>'] = 1;
 var editor = new wysihtml5.Editor("<%= id %>", {
     toolbar: "toolbar_<%= id %>",
     parserRules:  wysihtml5ParserRules,
-    stylesheets: ['<%= assets_path(template, '/assets/wysihtml_colors.css') %>']
+    stylesheets: ['<%= assets_url(template, '/assets/wysihtml_colors.css') %>']
 });
 $('#<%= e_id %>').data('wysihtml5', editor);
 editor.on("keyup", check_content);

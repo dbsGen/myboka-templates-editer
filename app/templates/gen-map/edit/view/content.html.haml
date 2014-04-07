@@ -1,8 +1,9 @@
 .gen-map{id: id}
-  %label
-    %input#label{type: 'text', placeholder: '城市'}
-    %button.btn.btn-primary#search 查询
-    %button.btn#clear 清除标记
+  %label.sr-only{for: 'label'} 查询地点
+  .col-sm-3
+    %input.form-control#label{type: 'text', placeholder: '城市'}
+  %button.btn.btn-primary#search 查询
+  %button.btn.btn-default#clear 清除标记
   .map-container
-  = javascript_defer_tag "'undefined' == typeof BMap || 'undefined' == typeof document.mapDrawingLoaded",
+  = javascript_defer_tag "window.loadOver != true || 'undefined' == typeof document.mapDrawingLoaded",
   "#{dynamic_path}edit/view/initialization.js.erb", id: id

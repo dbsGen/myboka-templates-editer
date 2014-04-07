@@ -28,6 +28,6 @@
         } else {
             tip.removeClass('overflow')
         }
-        comment.val(JSON.stringify({exp: comment.find('.c_avatar.big_avatar').attr('data-exp'), content: value}));
+        comment.data('value', JSON.stringify({exp: comment.find('.c_avatar .big_avatar').attr('data-exp'), content: value}));
     }
 })();

@@ -1,0 +1,5 @@
+(function(){
+    var $elm = $('#<%= id %>');
+    $elm.data('value', "<%= j raw(default) %>");
+    window.simpleAlbum.reloadAlbum($elm);
+})();

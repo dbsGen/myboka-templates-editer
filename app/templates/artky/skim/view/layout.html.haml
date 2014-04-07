@@ -1,12 +1,13 @@
 %style{:type => 'text/css'}
-  = ".article-comments .r-box{background-image: url('#{assets_path('skim/assets/reply_arrow.png')}');background-position: 18px bottom;background-repeat: no-repeat;}"
+  = ".article-comments .r-box{background-image: url('#{assets_url('skim/assets/reply_arrow.png')}');background-position: 18px bottom;background-repeat: no-repeat;}"
 #wrapper
   #inner
     #head
       #menu
         %ul
-          %li
-            %a{href: root_path} 主页
+          - if public_settings.home
+            %li
+              %a{href: root_path} 主页
           - unless public_settings.pages.nil?
             - public_settings.pages.each do |page|
               %li
